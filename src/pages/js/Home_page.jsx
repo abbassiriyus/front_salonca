@@ -18,7 +18,7 @@ open_modal2=()=>{
 getCategory=()=>{
   axios.get(`${url}/api/category`).then(res=>{
     console.log(res.data);
-
+this.setState({category:res.data})
   }).catch(err=>{
     console.log(err.message);
   })
@@ -37,7 +37,9 @@ componentDidMount(){
         <div className={s.header_input} >
           <div className={s.title}  style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}  onClick={()=>{this.open_modal2()}} ><div>{this.state.select_page}</div><MdKeyboardArrowDown/> </div>  
           <div className={s.pages} onMouseLeave={()=>this.open_modal()} id="modal_header" >
-           <div className={s.page_select} onClick={()=>{this.setState({select_page:"Ваша специализация"});document.querySelector('#modal_header').style="display:none"}} >Ваша специализация</div>
+           {/* {this.state.category.map((item,key)=>{
+            return <div className={s.page_select} onClick={()=>{this.setState({select_page:"Ваша специализация"});document.querySelector('#modal_header').style="display:none"}} >{}</div>
+           })} */}
         </div>
         </div>
         <div className={s.header_input}><input type="text" placeholder="Район или метро" /></div>
