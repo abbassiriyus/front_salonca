@@ -1,0 +1,141 @@
+*{
+    padding: 0;
+    margin: 0px;
+}
+.header{
+background: url("../img/master-hero-bg.avif");
+background-size: cover;
+background-position:center;
+}
+.header .black_fon{
+    background-color: rgba(255, 255, 255, 0.463);
+    width: 100%;
+    min-height: 400px;
+    height: 100%;padding: 10%;
+}
+.header .header_inputs{
+    display: flex;
+    justify-content: space-between;
+flex-wrap: wrap;
+gap: 2px;
+}
+.header .header_input{
+    background-color: white;
+width: 80%;
+max-width: 350px;
+min-width: 300px;
+padding: 10px;
+position: relative;
+margin-top: 4px;
+font-size: 16px;
+}
+.header .page_select{
+padding: 10px 5px;
+padding-left: 20px;
+
+}
+.header .page_select:hover{
+    background-color: aliceblue;
+    }
+.header_input .pages{
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    z-index: 12;
+    background-color: white;
+
+    width: 100%;
+    border-radius: 20px;
+   display: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.header .header_input input{
+border: none;
+outline: none;
+}
+@media(max-width:877px){
+    .header .header_input{
+        max-width: none;
+        width: 100%;
+    }
+}
+@media(max-width:400px){
+.header .black_fon{
+padding: 2px;
+padding-top: 12px;
+}
+}
+
+
+
+
+
+
+
+/* main-2 */
+.second_page{
+    min-height: 200px;
+}
+.second_page h2{
+    margin-left: 10%;
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+.second_page .cards_home{
+    width: 80%;
+margin-left: 10%;
+display: grid;
+grid-template-columns: auto auto auto auto;
+}
+.second_page .cards_home img {
+width: 100%;
+border-bottom-left-radius: 20px;
+border-bottom-right-radius:20px ;
+}
+
+
+.second_page .card_h{
+    display: block;
+    width: 95%;
+    /* min-width: 300px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+.second_page .card_h h3{
+    font-size: .875rem;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.second_page .main_button{
+    padding: 0.5rem;
+    font-size: .875rem;
+    font-weight: 700;
+}
+@media(max-width:1400px){
+    .second_page .cards_home{
+        width: 90%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    }  
+    .second_page h2{
+        margin-left: 5%;}
+}
+@media(max-width:991px){
+    .second_page .cards_home{
+        width: 90%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns:auto auto;
+    }  
+}
+@media(max-width:601px){
+    .second_page .cards_home{
+        width: 90%;
+    margin-left: 5%;
+    display: grid;
+    grid-template-columns:auto;
+    }  
+}
