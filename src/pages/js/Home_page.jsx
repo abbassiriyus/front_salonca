@@ -3,10 +3,14 @@ import s from "../css/Home_page.module.css"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import axios from "axios";
 import url from "../config/host";
+import  Navbar_page  from "./Navbar_page.jsx";
+import  Footer_page  from "./Footer_page.jsx";
+
 export default class Home_page extends Component {
 state={
 select_page:'Ваша специализация',
-category:''
+category:[],
+filyal:[]
 }
 
 open_modal=()=>{
@@ -23,11 +27,20 @@ this.setState({category:res.data})
     console.log(err.message);
   })
 }
+getFillial=()=>{
+  axios.get(`${url}/api/filyal`).then(res=>{
+this.setState({filyal:res.data})
+  }).catch(err=>{
+    console.log(err.message);
+  })
+}
 componentDidMount(){
   this.getCategory()
+  this.getFillial()
 }
   render() {
     return <div>
+      <Navbar_page/>
         <header className={s.header}>
   <div className={s.black_fon}>
   <div className={s.header_center}>
@@ -37,51 +50,44 @@ componentDidMount(){
         <div className={s.header_input} >
           <div className={s.title}  style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}  onClick={()=>{this.open_modal2()}} ><div>{this.state.select_page}</div><MdKeyboardArrowDown/> </div>  
           <div className={s.pages} onMouseLeave={()=>this.open_modal()} id="modal_header" >
-           {/* {this.state.category.map((item,key)=>{
-            return <div className={s.page_select} onClick={()=>{this.setState({select_page:"Ваша специализация"});document.querySelector('#modal_header').style="display:none"}} >{}</div>
-           })} */}
+            
+           {this.state.category.map((item,key)=>{
+            return <div className={s.page_select} onClick={()=>{this.setState({select_page:item.category});
+            document.querySelector('#modal_header').style="display:none"}} >{item.category}</div>
+           })} 
         </div>
         </div>
-        <div className={s.header_input}><input type="text" placeholder="Район или метро" /></div>
-        <div className={s.header_input}><input type="date" placeholder="Дата" /></div>
-        <div className={s.header_input}><input type="button" value="Найти" /></div>
+        <div className={s.header_input}><input type="text"  style={{background:'none',width:'100%',height:'100%'}}  placeholder="Район или метро" /></div>
+        <div className={s.header_input}><input  style={{background:'none',width:'100%',height:'100%'}} type="date" placeholder="Дата" /></div>
+        <div className={s.header_input} style={{background:"rgb(59 130 246)",borderRight:'20px'}}><input style={{background:'none',width:'100%',height:'100%'}} type="button" value="Найти" /></div>
         </div>
        </div>
   </div>
         </header>
 <main className={s.second_page} >
+
   <h2>Популярно прямо сейчас</h2>
 <div className={s.cards_home}>
-<div className={s.card_h}>
-  <h3>INDI</h3>
-  <p>Таганская, г Москва, ул Таганская, д 36 к 2</p>
-  <p>от 250 ₽/час · <span>от 1 часа</span></p>
-  <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&w=3840&q=75" alt="" />
+
+{this.state.filyal.map((item,key)=>{
+if(key<8){
+return <div className={s.card_h}>
+  <h3>{item.name}</h3>
+  <p style={{display:'flex',alignItems:'center'}}>
+    <div style={{borderRadius:'50%'}} className={s.circle}></div>{item.address}</p>
+  <p className={s.sena_card} >
+    {item.master.length>0?(<div>от {item.master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
+  <img src={item.image} alt="" />
 </div>
-<div className={s.card_h}>
-  <h3>INDI</h3>
-  <p>Таганская, г Москва, ул Таганская, д 36 к 2</p>
-  <p>от 250 ₽/час · от 1 часа</p>
-  <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&w=3840&q=75" alt="" />
-</div>
-<div className={s.card_h}>
-  <h3>INDI</h3>
-  <p>Таганская, г Москва, ул Таганская, д 36 к 2</p>
-  <p>от 250 ₽/час · от 1 часа</p>
-  <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&w=3840&q=75" alt="" />
-</div>
-<div className={s.card_h}>
-  <h3>INDI</h3>
-  <p>Таганская, г Москва, ул Таганская, д 36 к 2</p>
-  <p>от 250 ₽/час · от 1 часа</p>
-  <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Fy9Nqkao9c_fgHkVORA5Q8ivq8yqs8zTBBj2FlA9ZBf8%2Frs%3Afill%3A327%3A200%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzEyMmEwNjgzLWVlYWEtNGMxMy05YjRlLTNhYTE1ZDlhM2EwMS9iMzRhNzU3NS1iOTM3LTRhZDEtODNkMi1mODlmOWE2ZDA1N2YuanBn.jpg&w=3840&q=75" alt="" />
-</div>
+}
+})}
+
 
 </div>
-<button className={s.main_button}>Посмотреть все</button>
+<div className={s.section_two_button} ><button className={s.main_button}>Посмотреть все</button></div>
 </main>
 
-
+<Footer_page/>
 
     </div>;
   }

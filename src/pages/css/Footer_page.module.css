@@ -1,0 +1,25 @@
+.line{
+    width: 90%;
+margin: auto;
+min-width: 300px;
+max-width: 1400px;
+height: 2px;
+background-color:rgba(28, 61, 114, 0.554);
+margin-top: 40px;
+margin-bottom: 40px;
+}
+.footer_link{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.footer_link .footer_page{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+.footer_link a{
+    text-decoration: none;
+    color: rgba(28, 61, 114);
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FaRegUser } from "react-icons/fa"
 import { TbMenu2 } from "react-icons/tb"
-
+import {MdClose} from "react-icons/md"
 import s from "../css/Navbar_page.module.css"
 
 
@@ -23,14 +23,26 @@ open_modal=()=>{
   
 }
 
+closeModalContact=()=>{
+  document.querySelector("#back_black2").style="display:none"
+  document.querySelector("#back_black").style="display:none"
+  
 
+}
+
+
+openModalContact=()=>{
+  document.querySelector("#back_black2").style="display:flex"
+  document.querySelector("#back_black").style="display:flex"
+  document.querySelector('#modal_navbar').style="top:-400px" 
+}
   render() {
     return (
       <div>
 <div className={s.navbar_first}>
 <div className={s.logo}>salonca</div>
 <ul className={s.page}>
-<li>Связаться с нами</li>
+<li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="#">Салонам</a></li>
 <li><button>Войти</button></li>
 </ul>
@@ -40,10 +52,20 @@ open_modal=()=>{
 </div>
 </div>
 <ul className={s.nav_page} id='modal_navbar'>
-<li>Связаться с нами</li>
+<li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="#">Салонам</a></li>
 <li><button>Войти</button></li>
 </ul>
+
+<div className={s.back_black}  id='back_black' onClick={()=>this.closeModalContact()} ></div>
+<div className={s.back_black2}  id='back_black2' >
+  <div className={s.open_page}>
+    <div className={s.close} onClick={()=>this.closeModalContact()} ><MdClose/></div>
+<h1>Связаться с нами</h1>
+<a href="https://wa.clck.bar/79938950829"><button style={{backgroundColor:"rgb(28, 61, 114)",color:"white"}} >Написать в чат</button></a>
+<a href="tel:+998996487223"><button style={{background:"while",border:'2px solid rgb(28, 61, 114)'}} >Позвонить</button></a>
+  </div>
+</div>
 
 
       </div>
