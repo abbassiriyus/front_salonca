@@ -84,7 +84,7 @@ return <div className={s.card_h}>
 
 
 </div>
-<div className={s.section_two_button} ><button className={s.main_button}>Посмотреть все</button></div>
+<a href="/search" style={{textDecoration:"none"}} className={s.section_two_button} ><button className={s.main_button}>Посмотреть все</button></a>
 </main>
 
 <Footer_page/>

@@ -96,13 +96,23 @@ border-bottom-right-radius:20px ;
 
 
 .second_page .card_h{
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    flex-direction: column;
     width: 95%;
     margin: auto;
     /* min-width: 300px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 20px;
     margin-top: 30px;
+    overflow: hidden;
+    height: 300px;
+}
+.second_page .card_h img{
+    height: 230px;
+    width: auto;
+
 }
 .second_page .card_h h3{
     font-size: .875rem;
