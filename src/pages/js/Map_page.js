@@ -1,10 +1,10 @@
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import s from "../css/Map_page.module.css"
 import React, { Component } from "react";
-import url from '../config/host';
+import url from '../config/host.jsx';
 import axios from 'axios';
-import  Navbar_page  from "./Navbar_page.jsx";
-import  Footer_page  from "./Footer_page.jsx";
+import  Navbar_page  from "./Navbar_page";
+import  Footer_page  from "./Footer_page";
 export default class Map_page extends Component {
 state={
   filyal:[],

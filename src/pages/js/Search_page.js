@@ -147,6 +147,7 @@ return <div className={s.card_h}>
     <div style={{borderRadius:'50%'}} className={s.circle}></div>{item.address}</p>
   <p className={s.sena_card} >
     {item.master.length>0?(<div>от {item.master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
+  <div className="dostup_data">Доступно сегодня:</div>
   <img src={item.image} alt="" />
 </div>
 }
