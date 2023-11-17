@@ -43,7 +43,7 @@ openModalContact=()=>{
 <a style={{textDecoration:'none',color:'black'}} href="/"><div className={s.logo}>salonca</div></a>
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
-<li><a href="/salon">Салонам</a></li>
+<li><a href="/">Мастерам</a></li>
 <li><button>Войти</button></li>
 </ul>
 <div className={s.page_icons}>
@@ -53,7 +53,8 @@ openModalContact=()=>{
 </div>
 <ul className={s.nav_page} id='modal_navbar'>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
-<li><a href="/salon">Салонам</a></li>
+<li><a href="/">
+Мастерам</a></li>
 <li><button>Войти</button></li>
 </ul>
 

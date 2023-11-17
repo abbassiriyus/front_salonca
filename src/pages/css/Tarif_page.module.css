@@ -2,32 +2,37 @@
     padding: 0px;
     margin: 0px;
 }
-body{
-    background-color: #fafafa;
-}
-.text{
+.tarif{
     width: 60%;
-    min-width: 300px;
     margin: auto;
 }
-.text p{
-    font-size: 17px;
+.tarif p{
+       font-size: 17px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #3d5a80;
         line-height: 25px;
 }
-.text h1{
-    width: 60%;
+.tarif h1{
+     width: 60%;
     min-width: 300px;
     color: #3d5a80;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.tarif ul{
+    padding-left: 50px;
+    color: #3d5a80;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 @media(max-width:880px){
-    .text h1{
+    .tarif h1{
         font-size: 22px;
     }
-    .text p{
+    .tarif p{
         font-size: 13px;
         text-align: justify;
-}
+    }
+    .tarif ul{
+        font-size: 13px;
+        text-align: justify;
+    }
 }
