@@ -3,8 +3,8 @@ import s from "../css/Home_page.module.css"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import axios from "axios";
 import url from "../config/host.jsx";
-import  Navbar_page  from "./Navbar_page";
-import  Footer_page  from "./Footer_page";
+import  Navbar_page  from "./Navbar_page.jsx";
+import  Footer_page  from "./Footer_page.jsx";
 
 export default class Home_page extends Component {
 state={

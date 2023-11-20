@@ -98,12 +98,68 @@ outline: none;
 }
 .input_div{
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     border: 1px solid rgb(28, 61, 114);
      border-radius: 10px;
+     display: flex;
+     gap: 3px;
+     align-items:start ;
+     position: relative;
+     flex-wrap: wrap;
      padding-left: 5px;
 margin-top: 4px;
 margin-bottom: 20px;
+padding: 3px;
+padding-left: 20px;
+}
+.input_div p{
+    color: rgba(28, 61, 114, 0.594);
+    width: 100%;
+}
+.metro1{margin-top: 2px;
+    border: 1px solid rgb(28, 61, 114);
+    padding: 0px 10px;
+    border-radius: 3px;
+    width: auto;
+    display: flex;
+    cursor: pointer;
+    
+    font-size: 12px;
+    color: rgb(28, 61, 114);
+}
+.input_div .openpage_metro{
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: white ;
+    left: 0px;
+    font-size: 15px;
+    z-index: 112;
+    padding: 0px;
+    margin: 0px;
+    max-height: 200px;
+    overflow: auto;
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0, 128, 0, 0.34) !important;
+}
+.input_div .openpage_metro li{
+    border-bottom: 1px solid rgba(0, 128, 0, 0.34); 
+    padding-left: 20px;
+    cursor: pointer;
+}
+.input_div .openpage_metro li:hover{
+    background-color: rgba(127, 255, 212, 0.422);
+}
+.metro1 .close{
+    margin-left: 10px;
+
+}
+.metro1:hover .close{
+    display: block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .date_time{
     width: 100%;
@@ -165,12 +221,13 @@ border-bottom-right-radius:20px ;
     flex-direction: column;
     width: 95%;
     margin: auto;
+    max-width: 400px;
     /* min-width: 300px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 20px;
     margin-top: 30px;
     overflow: hidden;
-    height: 300px;
+    height: 350px;
 }
 .search_body .card_h img{
     height: 230px;
@@ -194,6 +251,11 @@ height: 10px;
 background-color: aqua;
 margin-right: 5px;
 margin-left: 10px;
+}
+.dostup_data{
+    margin-left: 10px;
+    color: rgba(20, 43, 81, 0.816);
+    font-size: 12px;
 }
 @media(max-width:1400px){
     .search_body .search_cards{
@@ -262,3 +324,16 @@ color: rgb(28, 61, 114);
     margin-top: 20px;
 }
 
+.worktime{
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-left:10px ;
+}
+.worktime button{
+   border: 1px solid rgb(28, 61, 114); 
+   background-color: rgba(240, 248, 255, 0);
+   padding: 1px 10px;
+   border-radius: 6px;
+}

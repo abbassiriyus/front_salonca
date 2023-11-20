@@ -3,8 +3,8 @@ import s from "../css/Map_page.module.css"
 import React, { Component } from "react";
 import url from '../config/host.jsx';
 import axios from 'axios';
-import  Navbar_page  from "./Navbar_page";
-import  Footer_page  from "./Footer_page";
+import  Navbar_page  from "./Navbar_page.jsx";
+import  Footer_page  from "./Footer_page.jsx";
 export default class Map_page extends Component {
 state={
   filyal:[],
