@@ -269,6 +269,10 @@ deleteRayon=(id)=>{
 data.splice(id,1)
   this.setState({rayon1:data})
 }
+getProduct=(item)=>{
+  localStorage.setItem("product",JSON.stringify(item))
+  window.location="/one"
+  }
     componentDidMount(){
       this.getCategory()
       this.getFillial()
@@ -373,7 +377,7 @@ return <div className={s.filter_check}>
 <div className={s.search_cards}>
 {this.state.filyal.map((item,key)=>{
 if(key<8){
-return <div className={s.card_h}>
+return <div onClick={()=>{this.getProduct(item)}} className={s.card_h}>
   <h3>{item.name}</h3>
   <p style={{display:'flex',alignItems:'center'}}>
     <div style={{borderRadius:'50%'}} className={s.circle}></div>{item.address}</p>
@@ -381,10 +385,13 @@ return <div className={s.card_h}>
     {item.master.length>0?(<div>от {item.master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
   <div className={s.dostup_data}>Доступно {item.date1}:</div>
   <div className={s.worktime}>{" "}
-    <button>09:50</button>
-    <button>09:50</button>
-    <button>09:50</button>
-    <button>09:50</button>
+{item.master.length>0?(item.master[0].mutahasis_time.map((item1,key1)=>{
+  return <button>{item1.time}</button>
+})):(<></>)
+
+}
+   
+
   </div>
   <img src={item.image} alt="" />
 </div>

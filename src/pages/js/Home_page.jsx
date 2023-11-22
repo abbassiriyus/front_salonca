@@ -20,6 +20,7 @@ resultpage_rayon:false,
 resultpage_metro:false
 }
 getProduct=(item)=>{
+localStorage.setItem("product",JSON.stringify(item))
 window.location="/one"
 }
 open_modal=()=>{

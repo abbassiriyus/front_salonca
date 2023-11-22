@@ -4,14 +4,34 @@ import  Navbar_page  from "./Navbar_page.jsx";
 import  Footer_page  from "./Footer_page.jsx";
 
 export default class One_product extends Component {
+state={
+  data:[]
+}
+
+
+
+
+
+componentDidMount(){
+
+var data1=JSON.parse(localStorage.getItem('product'))?JSON.parse(localStorage.getItem('product')):[]
+data1.images.unshift({"image":data1.image})
+
+console.log(data1);
+setTimeout(() => {
+  this.setState({data:data1})
+}, 100);
+}
+
+
   render() {
     return <div>  <Navbar_page/>  <div className={s.salonca_head1}>
            <a href="/search"><i class='bx bx-left-arrow-alt'></i>Вернуться назад</a>
        </div>  <div className={s.salonca_head}>
    
        <div className={s.salonca_head2}>
-           <h1><strong>Да, Салон</strong></h1>
-           <p>Кутузовская, г Москва, Кутузовский пр-кт, д 30, <a href="#">Посмотреть на карте</a></p>
+           <h1><strong>{this.state.data.name}</strong></h1>
+           <p>{this.state.data.address}<a href="#">Посмотреть на карте</a></p>
        </div>
        <div className={s.salonca_head3}>
            <a href="#"><button><strong>Забронировать</strong> </button></a>
@@ -21,74 +41,25 @@ export default class One_product extends Component {
 
 
 
-     <swiper-container id={s.swipper1} class="mySwiper"
+   {this.state.data.images?(<swiper-container id={s.swipper1} class="mySwiper"
    thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FtYlPKHQFvVF0M6oc9P7LUCR3C3RMzQ4Ptw52a6hFR4s%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9kZTRhOTYxOS03YzVkLTRjNjgtYTA4OS1mNjE5YTkzMjc5NTYuanBn.jpg&w=3840&q=75" alt="img"  />
+  {this.state.data.images?(this.state.data.images.map((item,key)=>{
+    return <swiper-slide>
+     <img src={item.image} alt="img"  />
    </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Ffi1a_dIYj_Z4ewnkjTX8BWXgJlouKDjCz_uVfot0X_Y%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC85NTE0NDlkMS0wMTJkLTQzM2QtODhkZC1lY2Y0ZDA2YjliZWUuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FU8ayMz7CPtfhNgdRxOLROmGNzW7zEvnmAGC-wW27h9o%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC84MDA4NWY2MC1jOTUwLTQzMGMtYWMyNS1lYjAwNzA2MmUwNTguanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FcAK3eeqiTV45Kv5Nnhjc6-QeoDnjqpo0ZHCSePpoIyo%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8xYzc5YTZkOC03YjM1LTQ1M2MtYTJkZS00N2QyZjRmMjM1ZGQuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Flo5xki7yHdOlgoSXqOzLsjfxNMyui6pRxjNQAMJIaK4%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC83ODFjMTc0NC1lYmMzLTRkNzQtOGI0ZC0zNDBjNzdlYmVmNGYuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FTSz2Y9FRWbJF_PwBG0jV-pYZ1BX-aNC9_nzsf7W_qyA%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9iNDE4NzY5ZC00YWQyLTQ4ZTUtYmJjOS00ZjNlZjBjZWY3ZGQuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FxeePZuBO_2D67cldkQRF3YI_aOI0Ia7O-PTU4Pzx-pQ%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9mYTBhZGIxZS04Y2U3LTRhMzgtOTQ2Mi1jNzhlZDM2MzNlYjYuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FJqiyIHWNUGUlQyUVoNFAU-hkTt5mzvGcLyiDYj9dpvM%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9lZDAyNTUyYS04N2NjLTRkY2MtODMxNi0zN2I4ZTY5MGExYjUuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2F-DCN2_0N2MwJi776QUlfiIVtqcbHr6iqT7_M8l7ZYfs%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9lNzYyN2NhOC1iYmE4LTQzNDAtOGIzNS00ZjQzMTQ3ZDdmNzUuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2F_tnQ6As0JbAqw9NCD3Tcu7sHUTp7tGKxOcMoVdBOPLs%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8wY2FlMTdhYy1iNGYwLTQyM2EtYjg2Yy04NGU3ZmYwNWJhYTQuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
- </swiper-container>
+  })):(<>ddd</>)} 
+
+ </swiper-container>):(<></>)} 
 
 
- <swiper-container class="mySwiper2" id={s.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
+ {this.state.data.images?(<swiper-container class="mySwiper2" id={s.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
    watch-slides-progress="true">
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FHMELV_fkUTynqZQ4lbej4co-yHf-BN6ZyttFdJeA5n8%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9lZTRlYTdjOS0xZGU2LTQ4MWUtYTMxOC0zZmQzMmQ4NDZjY2MuanBn.jpg&w=3840&q=75" alt="img"  />
+   {this.state.data.images?(this.state.data.images.map((item,key)=>{
+    return <swiper-slide>
+     <img src={item.image} alt="img"  />
    </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FqUXjbJNBxyqGCQrOOLDIC_6SkOxmGKG4zUK9JD2wi9o%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC82MDg5ZDRhMi1iZmNjLTRkZTItYjEwOC1jZWZkNzAyMGFiOTEuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FU8ayMz7CPtfhNgdRxOLROmGNzW7zEvnmAGC-wW27h9o%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC84MDA4NWY2MC1jOTUwLTQzMGMtYWMyNS1lYjAwNzA2MmUwNTguanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FcAK3eeqiTV45Kv5Nnhjc6-QeoDnjqpo0ZHCSePpoIyo%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8xYzc5YTZkOC03YjM1LTQ1M2MtYTJkZS00N2QyZjRmMjM1ZGQuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Flo5xki7yHdOlgoSXqOzLsjfxNMyui6pRxjNQAMJIaK4%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC83ODFjMTc0NC1lYmMzLTRkNzQtOGI0ZC0zNDBjNzdlYmVmNGYuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FTSz2Y9FRWbJF_PwBG0jV-pYZ1BX-aNC9_nzsf7W_qyA%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9iNDE4NzY5ZC00YWQyLTQ4ZTUtYmJjOS00ZjNlZjBjZWY3ZGQuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FxeePZuBO_2D67cldkQRF3YI_aOI0Ia7O-PTU4Pzx-pQ%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9mYTBhZGIxZS04Y2U3LTRhMzgtOTQ2Mi1jNzhlZDM2MzNlYjYuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FJqiyIHWNUGUlQyUVoNFAU-hkTt5mzvGcLyiDYj9dpvM%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9lZDAyNTUyYS04N2NjLTRkY2MtODMxNi0zN2I4ZTY5MGExYjUuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2F-DCN2_0N2MwJi776QUlfiIVtqcbHr6iqT7_M8l7ZYfs%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC9lNzYyN2NhOC1iYmE4LTQzNDAtOGIzNS00ZjQzMTQ3ZDdmNzUuanBn.jpg&w=3840&q=75" alt="img"  />
-   </swiper-slide>
-   <swiper-slide>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2F_tnQ6As0JbAqw9NCD3Tcu7sHUTp7tGKxOcMoVdBOPLs%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8wY2FlMTdhYy1iNGYwLTQyM2EtYjg2Yy04NGU3ZmYwNWJhYTQuanBn.jpg&w=3840&q=75" alt="img" />
-   </swiper-slide>
- </swiper-container>
+  })):(<>ddd</>)} 
+ </swiper-container>):(<></>)}
 
 
 <div className={s.btn}>
@@ -99,14 +70,15 @@ export default class One_product extends Component {
 
 <div className={s.opisaniya}>
  <h2><strong>Описание</strong></h2>
- <p>Аренда рабочих мест и отдельного кабинета для парикмахеров-стилистов, бровистов, визажистов, гримеров, массажистов, косметологов, тату-мастеров Стоимость: 350 руб/час Возможна аренда по сменам Да, салон! Коворкинг-пространство— это: — полностью оборудованное рабочее место или отдельный кабинет с кушеткой: зеркала с подсветкой, удобные кресла, мобильная тележка, локеры для хранения, мойка — аренда зала под бьюти-мероприятия и мастер-классы — уникальный яркий дизайн помещения, кольцевые лампы, локации для фото — вы сможете снимать контент для своих соцсетей — удобное расположение и парковка — доброжелательная атмосфера — отзывчивый персонал — приятная музыка — чай/кофе и конфетки, журналы и книги в зоне ожидания для ваших клиентов —бесплатная Wi-Fi сеть Если вы бьюти-мастер и ищете рабочее место без начальства и переплат за аренду, то мы ждем вас в «Да, салон!» Так же в салоне доступна почасовая и длительная аренда рабочих кабинетов для парикмахеров, косметологов, массажистов и тату-мастеров. Мы работаем ежедневно с 9:00 до 23:00 💛 Онлайн-бронирование Вы всегда можете выбрать нужное место и забронировать его онлайн
-</p><br/>
+ <p>{this.state.data.description}</p><br/>
 <h2><strong>Особенности</strong></h2>
 <ul>
- <li><i class='bx bx-check-double' style={{color:'#508a45'}}  ></i> Профессиональные материалы по запросу</li>
- <li><i class='bx bx-check-double' style={{color:'#508a45'}}  ></i> Есть администратор</li>
- <li><i class='bx bx-check-double' style={{color:'#508a45'}}  ></i> Зона ожидания для гостей</li>
- <li><i class='bx bx-check-double' style={{color:'#508a45'}}  ></i> Кухня для сотрудников</li>
+  {this.state.data.xususiyat?(
+    this.state.data.xususiyat.map((item,key)=>{
+ return<li><i class='bx bx-check-double' style={{color:'#508a45',marginRight:'10px'}}  ></i>{item.title}</li>
+    })
+  ):(<></>)}
+
 </ul><br/>
 <h2><strong>Требования к мастеру</strong></h2>
 <p>Уборка рабочего места осуществляется мастером после окончания работы.
