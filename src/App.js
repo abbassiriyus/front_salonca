@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Map_page from './pages/js/Map_page';
 import Usloviya_page from './pages/js/Usloviya_page'
 import Tarif_page from './pages/js/Tarif_page'
+import One_product from './pages/js/One_product'
 export default class App extends Component {
   render() {
     return (
@@ -23,6 +24,8 @@ export default class App extends Component {
       <Route path="/salon" element={<Salom_page/>} />
       <Route path="/usloviya" element={<Usloviya_page/>} />
       <Route path="/tarif" element={<Tarif_page/>} />
+      <Route path="/one" element={<One_product/>} />
+
 </Routes>
     </BrowserRouter>
       </div>

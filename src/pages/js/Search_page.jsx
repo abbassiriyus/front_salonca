@@ -39,7 +39,6 @@ send_data.push(masiv[i])
 }
     return send_data
     }
-
 filter_price=(data)=>{
 var min_price=document.querySelector('#min_price').value
 var max_price=document.querySelector('#max_price').value
@@ -82,7 +81,6 @@ filter_xususiyat=(data)=>{
 if(xus[i].checked){
 checked1.push(this.state.xususiyat[i])
 }}
-  console.log(data,checked1);
 var send_data=[]
 if(checked1.length>0){
 for (let i = 0; i < data.length; i++) {
@@ -104,6 +102,56 @@ send_data=data
 
 return send_data
 }
+
+filter_metro=(data)=>{
+var data_1=this.state.metro1
+var send_data=[]
+if(data_1.length>1){
+for (let i = 0; i < data.length; i++) {
+var push=false
+for (let j = 0; j < data[i].metro.length; j++) {
+for (let k = 0; k < data_1.length; k++) {
+if(data[i].metro[j].metro_id===data_1[k].id){
+push=true
+}  
+}}
+if(push){
+send_data.push(data[i])
+}
+
+}
+}else{
+send_data=data
+}
+return send_data
+}
+
+
+filter_rayon=(data)=>{
+  var data_1=this.state.rayon1
+  var send_data=[]
+  if (data_1.length>0) {
+    for (let i = 0; i < data.length; i++) {
+  var push=false
+  for (let j = 0; j < data[i].rayon.length; j++) {
+  for (let k = 0; k < data_1.length; k++) {
+  if(data[i].rayon[j].rayon_id===data_1[k].id){
+  push=true
+  }  
+  }}
+  if(push){
+  send_data.push(data[i])
+  }
+  
+  }
+  }else{
+    send_data=data
+  }
+ return send_data
+  }
+  
+
+
 open_modal=()=>{
       document.querySelector('#modal_header').style="display:none"
     }
@@ -129,14 +177,12 @@ getFillial=()=>{
     }
 getXususiyat=()=>{
   axios.get(`${url}/api/xususiyatlar`).then(res=>{
-    // console.log(res.data,"x");
     this.setState({xususiyat:res.data})
   })
 }
 getMetro=()=>{
 axios.get(`${url}/api/metro`).then(res=>{
   this.setState({metro:res.data})
-  console.log(res.data,"metro");
 })
 }
 open_molal_metro=()=>{
@@ -144,12 +190,18 @@ open_molal_metro=()=>{
 }
 close_molal_metro=()=>{
   document.querySelector('#modal3').style="display:none !important"
-  console.log("Ss");
+ 
+}
+open_molal_metro1=()=>{
+  document.querySelector('#modal4').style="display:block !important"
+}
+close_molal_metro1=()=>{
+  document.querySelector('#modal4').style="display:none !important"
+
 }
 getRayon=()=>{
   axios.get(`${url}/api/rayon`).then(res=>{
     this.setState({rayon:res.data})
-    console.log(res.data,"rayon");
   })
 }
 
@@ -158,6 +210,8 @@ allFilter=()=>{
     var data=this.filter_master(res.data)
     data=this.filter_xususiyat(data)
     data=this.filter_date(data)
+    data=this.filter_metro(data)
+    data=this.filter_rayon(data)
     this.setState({filyal:this.filter_price(data)})
       }).catch(err=>{
         console.log(err.message);
@@ -167,9 +221,53 @@ metroSelect=(data)=>{
   setTimeout(() => {
     this.close_molal_metro()
   }, 100);
+
+
   var sendata=this.state.metro1
-  sendata.push(data)
+  var push=-1
+
+for (let i = 0; i < sendata.length; i++) {
+if(sendata[i].id===data.id){
+push=i
+}}
+if(push===-1){
+    sendata.push(data)
+   
+}else{
+  sendata.splice(push,1)
+}
   this.setState({metro1:sendata})
+}
+rayonSelect=(data)=>{
+  setTimeout(() => {
+    this.close_molal_metro1()
+  }, 100);
+
+
+  var sendata=this.state.rayon1
+  var push=-1
+
+for (let i = 0; i < sendata.length; i++) {
+if(sendata[i].id===data.id){
+push=i
+}}
+if(push===-1){
+    sendata.push(data)
+   
+}else{
+  sendata.splice(push,1)
+}
+  this.setState({rayon1:sendata})
+}
+deleteMetro=(id)=>{
+  var data=this.state.metro1
+data.splice(id,1)
+  this.setState({metro1:data})
+}
+deleteRayon=(id)=>{
+  var data=this.state.rayon1
+data.splice(id,1)
+  this.setState({rayon1:data})
 }
     componentDidMount(){
       this.getCategory()
@@ -177,6 +275,27 @@ metroSelect=(data)=>{
       this.getMetro()
       this.getRayon()
       this.getXususiyat()
+      var data_key=JSON.parse(localStorage.getItem("filter"))
+if(data_key){
+  console.log(data_key,"ishladi");
+  this.setState({select_page:data_key.name,select_id_category:data_key.id})
+  if(data_key.rayonMetro!==0){
+if(data_key.rayonMetro.type=="metro"){
+this.setState({metro1:[data_key.rayonMetro]})
+  }else{
+    this.setState({rayon1:[data_key.rayonMetro]})
+  }
+  }
+  if(data_key.date.length>0){
+  document.querySelector("#date1").value=data_key.date
+  }
+  setTimeout(() => {
+  this.allFilter()
+  }, 100);
+}
+
+
+
       const today = new Date();
       const yyyy = today.getFullYear();
       const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -218,23 +337,28 @@ metroSelect=(data)=>{
 <label htmlFor="">Дата</label><br />
 <input type="date" min={this.state.minDate} id="date1" className={s.date_time} /><br />
 <label htmlFor="">Метро</label><br />
-<div onClick={()=>{this.open_molal_metro()}} className={s.input_div}> 
+<div className={s.input_div}> 
 <ul id="modal3" className={s.openpage_metro}>
 {this.state.metro.map((item,key)=>{
  return <li onClick={()=>{this.metroSelect(item)}} className={s.metro12}>{item.title}</li>
 })}
 </ul>
 {this.state.metro1.map((item,key)=>{
- return <div className={s.metro1}>{item.title} <div className={s.close}><RiCloseFill /></div></div>
+ return <div className={s.metro1}>{item.title} <div className={s.close}><RiCloseFill onClick={()=>{this.deleteMetro(key)}} /></div></div>
 })} <br />
-<p>Выберите метро</p>
+<p onClick={()=>{this.open_molal_metro()}} >Выберите метро</p>
 </div>
 <label htmlFor="">Район</label><br />
 <div className={s.input_div}>
+<ul id="modal4" className={s.openpage_metro}>
 {this.state.rayon.map((item,key)=>{
- return <div className={s.metro1}>{item.title} <div className={s.close}><RiCloseFill /></div></div>
+ return <li onClick={()=>{this.rayonSelect(item)}} className={s.metro12}>{item.title}</li>
+})}
+</ul>
+{this.state.rayon1.map((item,key)=>{
+ return <div className={s.metro1}>{item.title} <div className={s.close}><RiCloseFill  onClick={()=>{this.deleteRayon(key)}}  /></div></div>
 })} <br />
-<p>Выберите район</p>
+<p onClick={()=>{this.open_molal_metro1()}} >Выберите район</p>
 </div>
 <label htmlFor="">Особенности</label><br />
 {this.state.xususiyat.map((item,key)=>{
