@@ -5,11 +5,10 @@ import s from "../css/Vibor_page.module.css"
 export default class Vibor_page extends Component {
     state={
         data:[],
-        nowdata:''
-}
-
+        nowdata:JSON.parse(localStorage.getItem("data")),
+        nowdata1:''
+    }
 componentDidMount(){
-
     var data1=JSON.parse(localStorage.getItem('product'))?JSON.parse(localStorage.getItem('product')):[]
     data1.images.unshift({"image":data1.image})
     setTimeout(() => {
@@ -23,8 +22,10 @@ componentDidMount(){
     if (month.length < 2){month = '0' + month;}
     
     if (day.length < 2){day = '0' + day;} 
-    this.setState({nowdata:`${day}.${month}.${year}`})
-  
+    this.setState({nowdata1:`${year}-${month}-${day}`})
+    document.querySelector('#data_day').value=this.state.nowdata.day
+    document.querySelector('#date_time').value=this.state.nowdata.time
+
     }
     
 
@@ -35,26 +36,24 @@ componentDidMount(){
  <div className={s.reg}>
         <div className={s.reg1}>
         <h1><strong>Бронирование</strong></h1><br/>
-        <p style={{color: '#283f5e;'}}><strong>Да, Салон</strong></p><br/>
-        <p>Кутузовская, г Москва, Кутузовский пр-кт, д 30</p><br/>
+        <p style={{color:'#283f5e;'}}><strong>{this.state.data.name}</strong></p><br/>
+        <p>{this.state.data.address}</p><br/>
         <span>Тип места</span><br/>
         <select name="" id="">
-          <option value="">Стилист-парикмахер</option>
-          <option value="">Визажист</option>
-          <option value="">Визажист, Косметолог, Специалист по </option>
-          <option value="">наращиванию ресниц, Массажист,</option>
-          <option value=""> Мастер перманентного макияжа,</option>
-          <option value="">Стилист-парикмахер</option>
+        {this.state.data.master?(this.state.data.master.map((item,key)=>{
+          return <option value="">{item.work}</option>
+        })):(<div></div>)}
+          
         </select><br/>
 
      <br/> 
         <div className={s.inp}>
          <div><span>Дата</span><br/>
-          <input style={{width: '120px', height: '40px', borderRadius: '6px',border: '1px solid #98c1d9',
+          <input id="data_day" min={this.state.nowdata1} style={{width: '120px', height: '40px', borderRadius: '6px',border: '1px solid #98c1d9',
     backgroundColor:'transparent',
     paddingLeft: '15px',fontSize: '15px',color:'#3d5a80'}} type="date"/></div> 
     <div>   <span>Время (от)</span><br/>
-          <input style={{width: '120px',height: '40px',borderRadius: '6px',border: '1px solid #98c1d9',backgroundColor: 'transparent', paddingLeft: '15px',fontSize: '15px',color: '#3d5a80'}} type="time"/></div>
+          <input id="date_time"  style={{width: '120px',height: '40px',borderRadius: '6px',border: '1px solid #98c1d9',backgroundColor: 'transparent', paddingLeft: '15px',fontSize: '15px',color: '#3d5a80'}} type="time"/></div>
 
     <div>  <span>Время (до)</span><br/>
           <input style={{width: '118px',height: '40px',borderRadius:'6px',border: '1px solid #98c1d9',backgroundColor: 'transparent',paddingLeft: '15px',fontSize: '15px',color: '#3d5a80'}} type="time"/></div>

@@ -47,7 +47,8 @@ Vibor=()=>{
 if(this.state.masterid!=0&&this.state.time.length>0){
   var data={
     master:this.state.masterid,
-    time:this.state.time
+    time:this.state.time,
+    day:this.state.nowdata
   }
 localStorage.setItem("data", JSON.stringify(data))
 window.location="/vibor"
@@ -68,8 +69,8 @@ year = d.getFullYear();
 if (month.length < 2){month = '0' + month;}
 
 if (day.length < 2){day = '0' + day;} 
-this.setState({nowdata:`${day}.${month}.${year}`})
-
+this.setState({nowdata:`${year}-${month}-${day}`})
+document.querySelector('#date11').value=`${year}-${month}-${day}`
 }
 
 
@@ -98,9 +99,9 @@ this.setState({nowdata:`${day}.${month}.${year}`})
     return <swiper-slide>
      <img src={item.image} alt="img"  />
    </swiper-slide>
-  })):(<>ddd</>)} 
+  })):(<div>ddd</div>)} 
 
- </swiper-container>):(<></>)} 
+ </swiper-container>):(<div></div>)} 
 
 
  {this.state.data.images?(<swiper-container class="mySwiper2" id={s.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
@@ -109,8 +110,8 @@ this.setState({nowdata:`${day}.${month}.${year}`})
     return <swiper-slide>
      <img src={item.image} alt="img"/>
    </swiper-slide>
-  })):(<>ddd</>)} 
- </swiper-container>):(<></>)}
+  })):(<div>ddd</div>)} 
+ </swiper-container>):(<div></div>)}
 
 
 <div className={s.btn}>
@@ -128,7 +129,7 @@ this.setState({nowdata:`${day}.${month}.${year}`})
     this.state.data.xususiyat.map((item,key)=>{
  return<li><i class='bx bx-check-double' style={{color:'#508a45',marginRight:'10px'}}  ></i>{item.title}</li>
     })
-  ):(<></>)}
+  ):(<div></div>)}
 
 </ul><br/>
 <h2><strong>Требования к мастеру</strong></h2>
@@ -149,7 +150,7 @@ this.setState({nowdata:`${day}.${month}.${year}`})
   <tr>
     <th><span style={{color: '#0e2742'}}>Фото</span></th>
     <th style={{color: '#0e2742'}}>Специализация</th>
-    <th> <span style={{color: '#0e2742'}}>Дата: <a href="#" style={{textDecoration:'none'}} > {this.state.nowdata}</a></span></th>
+    <th> <span style={{color: '#0e2742'}}>Дата: <input type="date" id="date11" onChange={(e)=>{this.setState({nowdata:e.target.value})}} style={{width:'100px',border:'none',outline:'none'}} /></span></th>
     <th><span style={{color: '#0e2742'}}>Цена в час</span></th>
   </tr>
  {this.state.data.master?(this.state.data.master.map((item,key)=>{
@@ -162,13 +163,13 @@ this.setState({nowdata:`${day}.${month}.${year}`})
     <td className={s.button_td}>  
 {item.mutahasis_time.length>0?(item.mutahasis_time.map((item1,key1)=>{
   return <button onClick={()=>{this.bigclick("a"+key+key1);this.setState({time:item1.time,masterid:item.id})}} className="er" id={"a"+key+key1} >{item1.time}</button>
-})):(<></>)}
+})):(<div></div>)}
      
   
   </td>
     <td>{item.price} ₽</td>
   </tr>
- })):(<></>)}  
+ })):(<div></div>)}  
   
 </table>
 
