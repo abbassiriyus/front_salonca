@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import s from "../css/One_product.module.css"
 import  Navbar_page  from "./Navbar_page.jsx";
 import  Footer_page  from "./Footer_page.jsx";
+import Map_page from "./Map_page_one.jsx";
 
 export default class One_product extends Component {
 state={
-  data:[]
+  data:[],
+  star:['','','','','']
 }
 
 
@@ -16,8 +18,6 @@ componentDidMount(){
 
 var data1=JSON.parse(localStorage.getItem('product'))?JSON.parse(localStorage.getItem('product')):[]
 data1.images.unshift({"image":data1.image})
-
-console.log(data1);
 setTimeout(() => {
   this.setState({data:data1})
 }, 100);
@@ -31,7 +31,9 @@ setTimeout(() => {
    
        <div className={s.salonca_head2}>
            <h1><strong>{this.state.data.name}</strong></h1>
-           <p>{this.state.data.address}<a href="#">Посмотреть на карте</a></p>
+           <p>{this.state.data.address}<a href="#" onClick={()=>{
+    document.querySelector("#page_modal").style="display:flex"
+  }}>Посмотреть на карте</a></p>
        </div>
        <div className={s.salonca_head3}>
            <a href="#"><button><strong>Забронировать</strong> </button></a>
@@ -109,7 +111,6 @@ setTimeout(() => {
            <div className={s.lalala}>
                <br/>
            <span style={{color: '#98c1d9'}}>Дата: <a href="#">14.11.2023</a></span><br/><br/>
-    
      <button>09:00</button>
      <button>09:00</button>
      <button>09:00</button>
@@ -146,7 +147,6 @@ setTimeout(() => {
      <button>09:00</button>
      <button>09:00</button>
      <button>09:00</button>
-     
      <button className={s.vibr} >Выбрать</button>
    </div>
    <div className={s.lalala1}><br/>
@@ -283,126 +283,35 @@ setTimeout(() => {
    <h1><strong>Отзывы</strong> </h1>
  </div>
  <div className={s.otziv2}>
-   <div className={s.ot}>
+  {this.state.data.filyal_mark?(
+    this.state.data.filyal_mark.map((item,key)=>{
+   return  <div className={s.ot}>
    <div className={s.otziv22}>
-     <p>12.06.2023</p>
-     <span><strong>Алла</strong> </span>
-     <p>Все отлично !</p>
+     <p>{item.time_create.slice(8,10)}.{item.time_create.slice(5,7)}.{item.time_create.slice(0,4)}</p>
+    
+     <span><strong>{item.creator}</strong></span>
+     <p>{item.text}</p>
    </div>
    <div className={s.otziv222}>
-     <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
+{this.state.star.map((item1,key1)=>{
+  console.log(key1);
+  if(item.mark*1>key1){
+    return <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#FF0000"></path>
+  </svg> 
+  }else{
+    return <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#000000"></path>
+    </svg>  
+  }
+
+})}
+
    </div>
- </div>
-     <div className={s.ot}>
-   <div className={s.otziv22}>
-     <p>12.06.2023</p>
-     <span><strong>Алла</strong> </span>
-     <p>Все отлично !</p>
-   </div>
-   <div className={s.otziv222}>
-     <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-   </div>
- </div>
-     <div className={s.ot}>
-   <div className={s.otziv22}>
-     <p>12.06.2023</p>
-     <span><strong>Алла</strong> </span>
-     <p>Все отлично !</p>
-   </div>
-   <div className={s.otziv222}>
-     <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-   </div>
- </div>
- <div className={s.ot}>
-   <div className={s.otziv22}>
-     <p>11.06.2023   <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg></p>
-     <span><strong>Марина</strong> </span>
-     <p>Все очень понравилось 🥰 прекрасный дружелюбный персонал . Хорошее расположение . Мне оооочень понравилось у вас . Буду вашим постоянным клиентом 🥰</p>
-   </div>
-   <div className={s.otziv222}>
-     
-   </div>
- </div>
- <div className={s.ot}>
-   <div className={s.otziv22}>
-     <p>05.06.2023</p>
-     <span><strong>Татьяна</strong> </span>
-     <p>Всё замечательно)</p>
-   </div>
-   <div className={s.otziv222}>
-     <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#E60000"></path>
-</svg>
-   </div>
- </div>
+ </div>  
+    })
+  ):(<></>)}
+  
  </div>
 </div>
 
@@ -430,6 +339,14 @@ setTimeout(() => {
  <h3>Уточним все детали, поможем с выбором или договоримся о просмотре</h3>
  <h1 style={{color: '#316d8fb2'}}>+7 993 895-08-29</h1>
  <button className={s.button12} >Связаться с нами</button>
+</div>
+<div className={s.back_map} id="page_modal">
+<div className={s.modal_map} id="map">
+  <div className={s.close} onClick={()=>{
+    document.querySelector("#page_modal").style="display:none"
+  }}>x</div>
+ <Map_page /> 
+</div>
 </div>
 <Footer_page/>
 </div>;

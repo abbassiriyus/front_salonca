@@ -70,6 +70,23 @@ openModalContact=()=>{
   </div>
 </div>
 
+<div className={s.back_user}>
+<div className={s.modal_user}>
+  <div className={s.close}>x</div>
+<h2>Регистрация</h2>
+<label htmlFor="">Электронная почта</label><br />
+<input type="text" placeholder='email' /><br />
+<label htmlFor="">Пароль</label><br />
+<input type="text" placeholder='email' /><br />
+<label htmlFor="">Имя пользователя</label><br />
+<input type="text" placeholder='email' /><br />
+<button>Получить код в sms</button>
+<center><a href="">Вход для салонов</a></center>
+</div>
+
+</div>
+
+
 
       </div>
     )
