@@ -12,7 +12,8 @@ state={
   star:['','','','',''],
   nowdata:'',
   masterid:0,
-  time:""
+  time:"",
+  master:{}
 }
 
 
@@ -48,7 +49,8 @@ if(this.state.masterid!=0&&this.state.time.length>0){
   var data={
     master:this.state.masterid,
     time:this.state.time,
-    day:this.state.nowdata
+    day:this.state.nowdata,
+    data:this.state.master
   }
 localStorage.setItem("data", JSON.stringify(data))
 window.location="/vibor"
@@ -162,7 +164,8 @@ document.querySelector('#date11').value=`${year}-${month}-${day}`
     <td>{item.work}</td>
     <td className={s.button_td}>  
 {item.mutahasis_time.length>0?(item.mutahasis_time.map((item1,key1)=>{
-  return <button onClick={()=>{this.bigclick("a"+key+key1);this.setState({time:item1.time,masterid:item.id})}} className="er" id={"a"+key+key1} >{item1.time}</button>
+  return <button onClick={()=>{this.bigclick("a"+key+key1)
+  ;this.setState({time:item1.time,masterid:item.id,master:item})}} className="er" id={"a"+key+key1} >{item1.time}</button>
 })):(<div></div>)}
      
   
