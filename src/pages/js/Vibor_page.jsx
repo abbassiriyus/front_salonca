@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import Navbar_page from "./Navbar_page"
+import Footer_page from "./Footer_page"
 import s from "../css/Vibor_page.module.css"
 export default class Vibor_page extends Component {
     state={
         data:[],
+        nowdata:''
 }
 
 componentDidMount(){
@@ -21,13 +24,14 @@ componentDidMount(){
     
     if (day.length < 2){day = '0' + day;} 
     this.setState({nowdata:`${day}.${month}.${year}`})
-    
+  
     }
     
 
 
   render() {
     return <div className="big_s">
+      <Navbar_page/>
  <div className={s.reg}>
         <div className={s.reg1}>
         <h1><strong>Бронирование</strong></h1><br/>
@@ -88,6 +92,7 @@ componentDidMount(){
 
 </div>
     </div>
+    <Footer_page/>
     </div>;
   }
 }
