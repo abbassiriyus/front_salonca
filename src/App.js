@@ -4,13 +4,15 @@ import Home_page from './pages/js/Home_page'
 import Search_page from './pages/js/Search_page'
 import Politika_page from './pages/js/Politika_page'
 import Salom_page from './pages/js/Salon_page'
-
+import './App.css'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Map_page from './pages/js/Map_page';
 import Usloviya_page from './pages/js/Usloviya_page'
 import Tarif_page from './pages/js/Tarif_page'
 import One_product from './pages/js/One_product'
+import User_Page from './pages/js/User_Page'
+import Vibor_page from './pages/js/Vibor_page'
 export default class App extends Component {
   render() {
     return (
@@ -25,6 +27,9 @@ export default class App extends Component {
       <Route path="/usloviya" element={<Usloviya_page/>} />
       <Route path="/tarif" element={<Tarif_page/>} />
       <Route path="/one" element={<One_product/>} />
+      <Route path="/vibor" element={<Vibor_page/>} />
+
+      {localStorage.getItem("token")?(<Route path="/users" element={<User_Page/>} />):(<></>)}
 
 </Routes>
     </BrowserRouter>

@@ -148,7 +148,7 @@ filter_rayon=(data)=>{
     send_data=data
   }
  return send_data
-  }
+}
   
 
 

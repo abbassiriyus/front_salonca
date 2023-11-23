@@ -3,17 +3,56 @@ import s from "../css/One_product.module.css"
 import  Navbar_page  from "./Navbar_page.jsx";
 import  Footer_page  from "./Footer_page.jsx";
 import Map_page from "./Map_page_one.jsx";
+import url from "../config/host.jsx";
+import axios from "axios";
 
 export default class One_product extends Component {
 state={
   data:[],
-  star:['','','','','']
+  star:['','','','',''],
+  nowdata:'',
+  masterid:0,
+  time:""
 }
 
 
+send_message=()=>{
+var user=JSON.parse(localStorage.getItem("one_user"))
+if(user){
+var data=new FormData()
+data.append("nomer",document.querySelector("#nomer").value)
+data.append("ism",document.querySelector("#name1").value)
+data.append("creator",user[0].id)
+data.append("mutahasis_id",document.querySelector("#master_id").value)
+axios.post(`${url}/api/contact`,data).then(res=>{
+alert("Мы скоро свяжемся с вами. Ваш заказ принят")
+window.location.reload()
+}).catch(err=>{
+alert('Информация неполная')
+})
+}else{
+alert("Вы не зарегистрированы. Зарегистрируйтесь, чтобы воспользоваться услугой")
+}
+}
 
+bigclick=(key)=>{
+for (let i = 0; i < document.querySelectorAll('.er').length; i++) {
+  document.querySelectorAll('.er')[i].style="color:#0e2742;background:white"
+}
+document.querySelector(`#${key}`).style="background:#0e2742;color:white"
+}
 
-
+Vibor=()=>{
+  console.log(this.state.masterid,this.state.time);
+if(this.state.masterid!=0&&this.state.time.length>0){
+  var data={
+    master:this.state.masterid,
+    time:this.state.time
+  }
+localStorage.setItem("data", JSON.stringify(data))
+window.location="/vibor"
+}
+}
 componentDidMount(){
 
 var data1=JSON.parse(localStorage.getItem('product'))?JSON.parse(localStorage.getItem('product')):[]
@@ -21,6 +60,16 @@ data1.images.unshift({"image":data1.image})
 setTimeout(() => {
   this.setState({data:data1})
 }, 100);
+var d = new Date(),
+month = '' + (d.getMonth() + 1),
+day = '' + d.getDate(),
+year = d.getFullYear();
+
+if (month.length < 2){month = '0' + month;}
+
+if (day.length < 2){day = '0' + day;} 
+this.setState({nowdata:`${day}.${month}.${year}`})
+
 }
 
 
@@ -36,7 +85,7 @@ setTimeout(() => {
   }}>Посмотреть на карте</a></p>
        </div>
        <div className={s.salonca_head3}>
-           <a href="#"><button><strong>Забронировать</strong> </button></a>
+           <a href="#page_1"><button><strong>Забронировать</strong> </button></a>
        </div>
    </div>
 
@@ -58,7 +107,7 @@ setTimeout(() => {
    watch-slides-progress="true">
    {this.state.data.images?(this.state.data.images.map((item,key)=>{
     return <swiper-slide>
-     <img src={item.image} alt="img"  />
+     <img src={item.image} alt="img"/>
    </swiper-slide>
   })):(<>ddd</>)} 
  </swiper-container>):(<></>)}
@@ -89,195 +138,79 @@ setTimeout(() => {
 
 
 
-<div className={s.just}>
+<div id="page_1" className={s.just}>
    <div className={s.nothingbig}>
      <h2>Тип места</h2>
-   <div className={s.nothing}>
-       <div className={s.nothing_1}>
-           <div className={s.no}>
-               <span style={{color: '#98c1d9'}}>Фото</span><br/><br/>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FcAK3eeqiTV45Kv5Nnhjc6-QeoDnjqpo0ZHCSePpoIyo%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8xYzc5YTZkOC03YjM1LTQ1M2MtYTJkZS00N2QyZjRmMjM1ZGQuanBn.jpg&w=1280&q=75" alt="image" />
+</div> 
+</div>
 
-           </div>
-           <div className={s.no1}>
-               <ul>
-                   <li style={{color: '#98c1d9'}}>Специализация</li><br/>
-               <li>Стилист- <br/> парикмахер</li>
-       
-               </ul>
-           </div>
-       </div>
-       <div className={s.nothing_2}>
-           <div className={s.lalala}>
-               <br/>
-           <span style={{color: '#98c1d9'}}>Дата: <a href="#">14.11.2023</a></span><br/><br/>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button className={s.vibr} >Выбрать</button>
-   </div>
-   <div className={s.lalala1}><br/>
-       <span style={{color: '#98c1d9'}}>Цена в час</span><br/><br/>
-     <h3 style={{color: '#3d5a80'}}><strong>350 ₽</strong></h3>
-   </div>
-   
+<div className={s.cards121}>
+<table className={s.master_table}>
+  <tr>
+    <th><span style={{color: '#0e2742'}}>Фото</span></th>
+    <th style={{color: '#0e2742'}}>Специализация</th>
+    <th> <span style={{color: '#0e2742'}}>Дата: <a href="#" style={{textDecoration:'none'}} > {this.state.nowdata}</a></span></th>
+    <th><span style={{color: '#0e2742'}}>Цена в час</span></th>
+  </tr>
+ {this.state.data.master?(this.state.data.master.map((item,key)=>{
  
-       </div>
-
-   </div><br/>
- 
-
-      <div className={s.nothing}>
-       <div className={s.nothing_1}>
-           <div className={s.no}>
-               <span style={{color: '#98c1d9'}}>Фото</span><br/><br/>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FcAK3eeqiTV45Kv5Nnhjc6-QeoDnjqpo0ZHCSePpoIyo%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8xYzc5YTZkOC03YjM1LTQ1M2MtYTJkZS00N2QyZjRmMjM1ZGQuanBn.jpg&w=1280&q=75" alt="image" />
-
-           </div>
-           <div className={s.no1}>
-               <ul>
-                   <br/><br/>
-               <li>Визажист</li>
-               </ul>
-           </div>
-       </div>
-       <div className={s.nothing_2}>
-           <div className={s.lalala}>
-               <br/><br/><br/>
-    
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-     <button>09:00</button>
-    
-     <button className={s.vibr} >Выбрать</button>
-   </div>
-   <div className={s.lalala1}>
-<br/><br/> 
-     <h3 style={{color:'#3d5a80',paddingLeft:'40px'}}><strong>350 ₽</strong></h3>
-   </div>
-   
- 
-       </div>
-   
-   </div><br/>
-
-      <div className={s.nothing}>
-       <div className={s.nothing_1}>
-           <div className={s.no}>
-               <span style={{color: '#98c1d9'}}>Фото</span><br/><br/>
-     <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2FcAK3eeqiTV45Kv5Nnhjc6-QeoDnjqpo0ZHCSePpoIyo%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzLzY3MTlmMmNhLTM2YjQtNGQyYi1iYmIwLWZjYWYxZDg2ZjVjNC8xYzc5YTZkOC03YjM1LTQ1M2MtYTJkZS00N2QyZjRmMjM1ZGQuanBn.jpg&w=1280&q=75" alt="image" />
-
-           </div>
-           <div className={s.no1}>
-               <ul>
-                   <li style={{color: '#98c1d9'}}>Специализация</li><br/>
-        <li>Визажист</li>
-        <li>Косметолог</li>
-        <li>Специалист по <br/> наращиванию <br/> ресниц</li>
-        <li>Массажист</li>
-        <li>Мастер <br/> перманентного <br/> макияжа</li>
-        <li>Стилист- <br/> парикмахер</li>
-        <li>(кабинет)</li>
-               </ul>
-           </div>
-       </div>
-       <div className={s.nothing_2}>
-           <div className={s.lalala}>
-           
-    <p style={{color: '#3d5a80'}}>Выберите дату, чтобы увидеть <br/> доступное время</p>
+  return <tr className={s.dr}>
+    <td className={s.now}><img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="image" />
+    <a href=""></a>
+    </td>
+    <td>{item.work}</td>
+    <td className={s.button_td}>  
+{item.mutahasis_time.length>0?(item.mutahasis_time.map((item1,key1)=>{
+  return <button onClick={()=>{this.bigclick("a"+key+key1);this.setState({time:item1.time,masterid:item.id})}} className="er" id={"a"+key+key1} >{item1.time}</button>
+})):(<></>)}
+     
   
-   </div>
-   <div className={s.lalala1}>
-      
+  </td>
+    <td>{item.price} ₽</td>
+  </tr>
+ })):(<></>)}  
+  
+</table>
 
-   </div>
-   
- 
-       </div>
+<div className={s.media_masters}>
 
-   </div>
-   
+{this.state.data.master?(this.state.data.master.map((item,key)=>{
+  return <div className={s.master}>
+  <div className={s.image}>
+    <div className={s.title}>Фото</div>
+    <img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="" />
+    <p>Дата: {this.state.nowdata}</p>
+  </div>
+  <div className={s.spes}>
+  <div className={s.title}>Специализация</div>
+  <p>{item.work}</p>
+  </div>
+<div className={s.button}>
+{item.mutahasis_time.length>0?(item.mutahasis_time.map((item1,key1)=>{
+  return <button onClick={()=>{this.bigclick("b"+key+key1);this.setState({time:item1.time,masterid:item.id})}} className="er" id={"b"+key+key1}>{item1.time}</button>
+})):(<></>)}
+</div>
+<div className={s.sena}>
+  <span>Цена за час</span>
+  <h4>{item.price} ₽</h4>
+</div>
+<button style={this.state.time&&this.state.masterid==item.id?{backgroundColor:"#0e2742"}:{backgroundColor:"#0e274280"}} onClick={()=>{this.Vibor()}} className={s.button_one}>Выбрать</button>
+</div>
+ })):(<></>)}  
+
+
 </div>
 
 
-         <div className={s.not}>
-       <button>Выбрать</button>
-       <ul>
+<div className={s.cass}>
+<button  style={this.state.time.length>0&&this.state.masterid!=0?{backgroundColor:"#0e2742"}:{backgroundColor:"#0e274280"}} onClick={()=>{this.Vibor()}} >Выбрать</button>
+       <ul style={{listStyle:"none "}}>
            <li><i class='bx bx-check-double' style={{color:'#259a42'}}  ></i> Бронируйте сейчас — платите потом!</li>
            <li><i class='bx bx-check-double' style={{color:'#259a42'}}  ></i> Бесплатная отмена</li>
            <li><i class='bx bx-check-double' style={{color:'#259a42'}}  ></i> Никаких скрытых платежей и комиссий</li>
        </ul>
-   </div>
-
-
 </div>
-
+</div>
 <div className={s.otzivi}>
  <div class={s.otziv1}>
    <h1><strong>Отзывы</strong> </h1>
@@ -285,16 +218,15 @@ setTimeout(() => {
  <div className={s.otziv2}>
   {this.state.data.filyal_mark?(
     this.state.data.filyal_mark.map((item,key)=>{
-   return  <div className={s.ot}>
+   return  <div style={{position:'relative'}} className={s.ot}>
    <div className={s.otziv22}>
      <p>{item.time_create.slice(8,10)}.{item.time_create.slice(5,7)}.{item.time_create.slice(0,4)}</p>
     
      <span><strong>{item.creator}</strong></span>
      <p>{item.text}</p>
    </div>
-   <div className={s.otziv222}>
+   <div style={{position:'absolute',top:'0px',right:'30px'}} className={s.otziv222}>
 {this.state.star.map((item1,key1)=>{
-  console.log(key1);
   if(item.mark*1>key1){
     return <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M8.10755 0.872559L9.81555 6.12925H15.3428L10.8712 9.37806L12.5792 14.6347L8.10755 11.3859L3.63594 14.6347L5.34395 9.37806L0.87234 6.12925H6.39955L8.10755 0.872559Z" fill="#FF0000"></path>
@@ -320,25 +252,22 @@ setTimeout(() => {
  <h1><strong>Нужна долгосрочная аренда?</strong></h1>
  <h3>Оставьте заявку и с вами свяжется специалист для обсуждения деталей</h3><br/>
  <p>Имя</p>
- <input type="text" /><br/>
+ <input id="name1" type="text" /><br/>
  <p>Номер телефона</p>
- <input placeholder="+7(" type="text"/><br/>
+ <input placeholder="+7(" id="nomer" type="text"/><br/>
  <p>Специализация</p>
- <select name="" id="">
-   <option value="">Ваша специализация</option>
-   <option value="">стилист парикхмахер</option>
-   <option value="">визажист</option>
-   <option value="">Косметолог</option>
-   <option value="">мастер ногтевого сервиса</option>
-   <option value="">массажист</option>
-   <option value="">мастер перманентного макияжа</option>
-   <option value="">барбер</option>
+ <select name="" id="master_id">
+{this.state.data.master?(this.state.data.master.map((item,key)=>{
+return <option value={item.id}>{item.work}</option>
+})):(<></>)}   
+
  </select><br/><br/>
- <button className={s.btnn}>Отправить заявку</button><br/><br/>
+ <button onClick={()=>{this.send_message()}} className={s.btnn}>Отправить заявку</button><br/><br/>
  <h1><strong>Остались вопросы?</strong></h1>
  <h3>Уточним все детали, поможем с выбором или договоримся о просмотре</h3>
- <h1 style={{color: '#316d8fb2'}}>+7 993 895-08-29</h1>
- <button className={s.button12} >Связаться с нами</button>
+ <h1 style={{color: '#316d8fb2'}}>{this.state.data.phone?(this.state.data.phone):(<></>)}</h1>
+ {this.state.data.phone?(<a href={"tel:"+this.state.data.phone}><button className={s.button12} >Связаться с нами</button></a> ):(<></>)}
+
 </div>
 <div className={s.back_map} id="page_modal">
 <div className={s.modal_map} id="map">

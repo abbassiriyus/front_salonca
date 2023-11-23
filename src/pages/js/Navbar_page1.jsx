@@ -44,10 +44,12 @@ openModalContact=()=>{
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/">Мастерам</a></li>
-<li><button>Войти</button></li>
+<li> {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} /> <span style={{position:'relative',top:'2px'}}>Профиль</span></a>):(  <button onClick={()=>{
+    document.querySelector('#modal122').style="display:flex"
+  }}>Войти</button>)}</li>
 </ul>
 <div className={s.page_icons}>
-<FaRegUser className={s.user_icons} />
+{localStorage.getItem("token")?(<FaRegUser className={s.user_icons} />):(  <></>)}
 <TbMenu2 onClick={()=>{this.open_modal()}} />
 </div>
 </div>
@@ -55,7 +57,9 @@ openModalContact=()=>{
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/">
 Мастерам</a></li>
-<li><button>Войти</button></li>
+<li> {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center',justifyContent:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} /> <span style={{position:'relative',top:'2px'}}>Профиль</span></a>):(  <button onClick={()=>{
+    document.querySelector('#modal122').style="display:flex"
+  }}>Войти</button>)}</li>
 </ul>
 
 <div className={s.back_black}  id='back_black' onClick={()=>this.closeModalContact()} ></div>

@@ -196,6 +196,9 @@ font-size: 23px;
     border-radius: 5px;
     margin-bottom: 30px;
 }
+.back_user{
+    display: none;
+}
 .modal_user button{
     background-color: rgb(28, 61, 114);
     height: 40px;

@@ -1,14 +1,64 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { FaRegUser } from "react-icons/fa"
 import { TbMenu2 } from "react-icons/tb"
 import {MdClose} from "react-icons/md"
 import s from "../css/Navbar_page.module.css"
-
+import axios from 'axios'
+import url  from "../config/host"
 
 
 export default class Navbar_page extends Component {
 state={
-  modal_var:0
+  modal_var:0,
+  email:"test@gmail.com",
+key:0
+}
+
+registratsiya=()=>{
+  var data=new FormData()
+  this.setState({email:document.querySelector("#email").value})
+  data.append("username",document.querySelector("#username").value)
+  data.append("email",document.querySelector("#email").value)
+  data.append("password",document.querySelector("#parol").value)
+axios.post(`${url}/api/register`,data).then(res=>{
+  this.setState({key:2})
+}).catch(err=>{
+ console.error(err.message)
+})
+}
+
+send_code=()=>{
+  var data=new FormData()
+  data.append("code",document.querySelector("#code").value)
+
+axios.post(`${url}/api/verify`,data).then(res=>{
+  axios.get(`${url}/api/users`).then(res=>{
+   var a=res.data.filter(item=>item.email==document.querySelector("#email").value)
+    localStorage.setItem("one_user",JSON.stringify(a))
+    localStorage.setItem("token",res.data.access)
+      window.location='/users'  
+    })
+}).catch(err=>{
+ console.error(err.message)
+})
+}
+
+login=()=>{
+  var data=new FormData()
+  data.append("email",document.querySelector("#email1").value)
+  data.append("password",document.querySelector("#parol1").value)
+
+axios.post(`${url}/api/login`,data).then(res1=>{
+axios.get(`${url}/api/users`).then(res=>{
+var a=res.data.filter(item=>item.email==document.querySelector("#email1").value)
+localStorage.setItem("one_user",JSON.stringify(a))
+localStorage.setItem("token",res1.data.token)
+  window.location='/users'  
+})
+  
+}).catch(err=>{
+ console.error(err.message)
+})
 }
 
 open_modal=()=>{
@@ -31,10 +81,15 @@ closeModalContact=()=>{
 }
 
 
+
+
 openModalContact=()=>{
   document.querySelector("#back_black2").style="display:flex"
   document.querySelector("#back_black").style="display:flex"
   document.querySelector('#modal_navbar').style="top:-400px" 
+}
+componentDidMount(){
+  console.log(window.location.pathname);
 }
   render() {
     return (
@@ -44,17 +99,28 @@ openModalContact=()=>{
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/salon">Салонам</a></li>
-<li><button>Войти</button></li>
+<li>
+  {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} /> <span style={{position:'relative',top:'2px'}}>Профиль</span></a>):(  <button onClick={()=>{
+   document.querySelector('#modal_navbar').style="top:-400px";
+   document.querySelector('#modal122').style="display:flex";
+  }}>Войти</button>)}
+ 
+
+  
+  </li>
 </ul>
 <div className={s.page_icons}>
-<FaRegUser className={s.user_icons} />
+{localStorage.getItem("token")?(<FaRegUser className={s.user_icons} />):(  <></>)}
 <TbMenu2 onClick={()=>{this.open_modal()}} />
 </div>
 </div>
 <ul className={s.nav_page} id='modal_navbar'>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/salon">Салонам</a></li>
-<li><button>Войти</button></li>
+<li> {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center',justifyContent:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} /> <span style={{position:'relative',top:'2px'}}>Профиль</span></a>):(  <button onClick={()=>{
+   document.querySelector('#modal_navbar').style="top:-400px" ;
+   document.querySelector('#modal122').style="display:flex";
+  }}>Войти</button>)}</li>
 </ul>
 
 <div className={s.back_black}  id='back_black' onClick={()=>this.closeModalContact()} ></div>
@@ -70,19 +136,43 @@ openModalContact=()=>{
   </div>
 </div>
 
-<div className={s.back_user}>
-<div className={s.modal_user}>
-  <div className={s.close}>x</div>
+<div className={s.back_user} id='modal122'>
+{this.state.key===0?(<div className={s.modal_user}>
+  <div className={s.close} onClick={()=>{
+    document.querySelector('#modal122').style="display:none"
+  }} >x</div>
 <h2>Регистрация</h2>
 <label htmlFor="">Электронная почта</label><br />
-<input type="text" placeholder='email' /><br />
+<input type="text" placeholder='email' id='email' /><br />
 <label htmlFor="">Пароль</label><br />
-<input type="text" placeholder='email' /><br />
+<input type="text" placeholder='password' id='parol' /><br />
 <label htmlFor="">Имя пользователя</label><br />
-<input type="text" placeholder='email' /><br />
-<button>Получить код в sms</button>
-<center><a href="">Вход для салонов</a></center>
-</div>
+<input type="text" placeholder='Username' id='username' /><br />
+<button onClick={()=>{this.registratsiya()}} >Получить код в email</button>
+<center><p onClick={()=>{this.setState({key:1})}} >Вход для салонов</p></center>
+</div>):(<></>)}
+{this.state.key===1?(<div className={s.modal_user}>
+  <div className={s.close}>x</div>
+<h2>Вход</h2>
+<label htmlFor="">Электронная почта</label><br />
+<input type="text" placeholder='email' id='email1' /><br />
+<label htmlFor="">Пароль</label><br />
+<input type="text" placeholder='password' id="parol1" /><br />
+<button onClick={()=>{this.login()}} >Вход</button>
+<center><p onClick={()=>{this.setState({key:0})}} >Вход для салонов</p></center>
+</div>):(<></>)}
+{this.state.key===2?(<div className={s.modal_user}>
+  <div className={s.close}>x</div>
+<h2>Вход</h2>
+<label htmlFor="">Электронная почта</label><br />
+<input style={{border:'1px solid gray'}} disabled type="text" placeholder='email' value={this.state.email} /><br />
+<label htmlFor="">Код из sms</label><br />
+<input type="text" id="code" placeholder='code'  /><br />
+<label htmlFor="">Отправить код </label>
+<button onClick={()=>{this.send_code()}}>Вход</button>
+</div>):(<></>)}
+
+
 
 </div>
 

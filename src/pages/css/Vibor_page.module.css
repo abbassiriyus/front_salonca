@@ -1,0 +1,187 @@
+.reg #ddd{
+    --swiper-navigation-color: #fff; --swiper-pagination-color: #fff
+}
+.reg{
+    width: 90%;
+    max-width: 1200px;
+    gap: 30px;
+    display: inline-flex;
+ 
+margin: auto;
+display: flex;
+justify-content: space-around;
+align-items: start;
+flex-wrap: wrap;
+}
+.reg .reg1{
+  width: 40%;
+    min-width: 300px;
+    
+}
+/* .reg1 input{
+    min-width: 290px;
+    min-height: 50px;
+    border-radius: 15px;
+    border: 1px solid #98c1d9;
+    background-color: transparent;
+    padding-left: 15px;
+    font-size: 18px;
+    color: #3d5a80;
+} */
+.reg .reg1 span{
+    color: #3d5a80;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.reg .reg1 select{
+    width: 88%;
+    min-width: 290px;
+    min-height: 50px;
+    border-radius: 6px;
+    border: 1px solid #98c1d9;
+    background-color: transparent;
+    font-size: 17px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-left: 10px;
+    color: #3d5a80;
+}
+
+
+.reg .reg1 h1{
+    color: #1c2b3d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.reg .sto{
+    width: 100%;
+display: flex;
+justify-content: start;
+flex-wrap: wrap;
+}
+.reg .reg1 p{
+    min-width: 300px;
+    color: #3d5a80;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.reg .stoimost{
+    width: 125px;
+}
+.reg .stoimost2{
+    width: 100px;
+}
+.reg .stoimost2 button{
+    width: 16vw;
+    min-width: 180px;
+    min-height: 50px;
+    border-radius: 15px;
+    border: none;
+    background-color: #223e61;
+    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 17px;
+}
+
+.reg .inp{
+  width: 89%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media(max-width:875px){
+ .reg .inp input{
+    min-width: 280px;
+  }
+}
+ .reg .swiper-wrapper{
+ display: block;
+   }
+  .reg #oasdiojasd{
+    position: relative;
+    top: 600px;
+    right: 610px;
+   }
+
+.reg .glavn_sw{
+width:50%;
+min-width: 300px;
+margin-top: 5%;
+}
+
+   .reg .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .reg .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  .reg .swiper-slide img {
+      display: block;
+      width: 80%;
+      height: 350px !important;
+      object-fit: cover;
+      margin-bottom: 30px;
+    }
+
+
+   .reg .swiper {
+      width: 100%;
+      height: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+   .reg .swiper-slide {
+      background-size: cover;
+      background-position: center;
+    }
+
+   .reg .mySwiper2 {
+      height: 80%;
+      width: 100%;
+    }
+
+    .reg .mySwiper {
+      height: 100px;
+      box-sizing: border-box;
+      padding: 10px 0;
+    }
+
+    .reg .mySwiper .swiper-slide {
+      width: 25%;
+      height: 150px !important;
+      opacity: 0.4;
+    }
+
+    .reg .mySwiper .swiper-slide-thumb-active {
+      opacity: 1;
+    }
+
+    .reg .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 250px !important;
+      object-fit: cover;
+    }
+    .reg .fdsafdsfs{
+  width: 100px !important;
+height: 100px !important;
+overflow: hidden !important;
+}
+
+.reg .fdsafdsfs{
+  width: 300px !important;
+}
+.sipper12{
+    width: 50%;
+    background-color: red;
+    min-height: 200px;
+    margin-top: 10%;
+    position: static !important;
+    top: 10%;
+}

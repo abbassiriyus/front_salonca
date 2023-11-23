@@ -39,7 +39,6 @@ state={
     document.querySelector('#modal_first').style="left:-400px"
   }
   componentDidMount(){
-    this.getFillial()
 this.open_modal()
   }
   render() {
