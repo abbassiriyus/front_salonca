@@ -19,16 +19,16 @@ export default class User_Page extends Component {
       const Filter=res.data.filter(item=>item.id==JSON.parse(localStorage.getItem("one_user"))[0].id)
       axios.get(`${url}/api/category`).then(cat=>{
             this.setState({category:cat.data})
+            Filter.map(item=>{
+            this.setState({passwordd:item.password})
+            this.setState({superAdmin:item.superadmin})
+            document.querySelector("#user_email").value=item.email
+            document.querySelector("#user_name").value=item.username
+            document.querySelector("#user_phonenumber").value=item.phone
+            document.querySelector("#user_category").value=item.category
+            })
       })
-      Filter.map(item=>{
-        this.setState({passwordd:item.password})
-        this.setState({superAdmin:item.superadmin})
-        document.querySelector("#user_email").value=item.email
-        document.querySelector("#user_name").value=item.username
-        document.querySelector("#user_phonenumber").value=item.phone
-        document.querySelector("#user_category").value=item.category
-          
-      })
+      
       })
    }
 
