@@ -42,22 +42,34 @@ send_data.push(masiv[i])
 filter_price=(data)=>{
 var min_price=document.querySelector('#min_price').value
 var max_price=document.querySelector('#max_price').value
-if(min_price.length===0){
-min_price=0
-}else{
-min_price=min_price*1
-}
-if(max_price.length===0){
-max_price=99999999999
-}else{
-  max_price=max_price*1
-}
-var result=[]
+if(max_price.length!==0 && min_price.length!==0){
 for (let i = 0; i < data.length; i++) {
-if(data[i].master.length>0 && data[i].master[0].price>=min_price && data[i].master[0].price<=max_price){
+if(data[i].master.length>0 && data[i].master[0].price>=min_price*1 && data[i].master[0].price<=max_price*1){
 result.push(data[i])
 }
 }
+}else{
+if(max_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price<=max_price*1){
+    result.push(data[i])
+    }
+    }
+}
+if(min_price.length!==0){
+  for (let i = 0; i < data.length; i++) {
+    if(data[i].master.length>0 && data[i].master[0].price>=min_price*1){
+    result.push(data[i])
+    }
+    }
+}
+}
+if(max_price.length===0 && min_price.length===0){
+result=data
+}
+
+var result=[]
+
 return result
 }
 filter_date=(data12)=>{
@@ -279,7 +291,7 @@ getProduct=(item)=>{
       this.getMetro()
       this.getRayon()
       this.getXususiyat()
-      var data_key=JSON.parse(localStorage.getItem("filter"))
+      var data_key=JSON.parse(sessionStorage.getItem("filter"))
 if(data_key){
   console.log(data_key,"ishladi");
   this.setState({select_page:data_key.name,select_id_category:data_key.id})

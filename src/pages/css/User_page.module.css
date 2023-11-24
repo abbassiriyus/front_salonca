@@ -1,0 +1,18 @@
+.users{
+    width: 100%;
+    display: flex;
+    align-items:start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+}
+.calendar{
+width: 55%;
+min-width: 300px;
+}
+.form{
+    width: 80%;
+    max-width: 400px;
+    min-width: 200px;
+}

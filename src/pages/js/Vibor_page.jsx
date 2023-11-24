@@ -4,6 +4,8 @@ import Footer_page from "./Footer_page"
 import s from "../css/Vibor_page.module.css"
 import axios from "axios";
 import url from "../config/host";
+import s2 from "../css/One_product.module.css"
+
 export default class Vibor_page extends Component {
     state={
         data:[],
@@ -110,7 +112,7 @@ componentDidMount(){
     paddingLeft: '15px',
     fontSize: '15px',color: '#3d5a80'}} type="text"/><br/>
         <br/><span>Комментарий</span><br/>
-        <input id="message" style={{width: '85%', minWidth: '280px', minHeight: '200px', borderRadius: '6px',border: '1px solid #98c1d9',backgroundColor: 'transparent',paddingLeft: '15px',
+        <textarea id="message" style={{width: '85%', minWidth: '280px', minHeight: '200px', borderRadius: '6px',border: '1px solid #98c1d9',backgroundColor: 'transparent',paddingLeft: '15px',
     fontSize: '15px',color: '#3d5a80',height: '200px'}}  type="text"/><br/>
         <br/><div class="sto">
         <div class="stoimost">
@@ -126,6 +128,25 @@ componentDidMount(){
 
 <div className={s.sipper12}>
 
+{this.state.data.images?(<swiper-container style={{width:'100%',height:'40vh',minHeight:'200px',maxHeight:'500px'}} id={s2.swipper1} class="mySwiper"
+   thumbs-swiper=".mySwiper2" space-between="10" navigation="true">
+  {this.state.data.images?(this.state.data.images.map((item,key)=>{
+    return <swiper-slide>
+     <img src={item.image} alt="img"  />
+   </swiper-slide>
+  })):(<div>ddd</div>)} 
+
+ </swiper-container>):(<div></div>)} 
+
+
+ {this.state.data.images?(<swiper-container style={{maxHeight:'200px'}} class="mySwiper2" id={s2.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
+   watch-slides-progress="true">
+   {this.state.data.images?(this.state.data.images.map((item,key)=>{
+    return <swiper-slide>
+     <img src={item.image} alt="img"/>
+   </swiper-slide>
+  })):(<div>ddd</div>)} 
+ </swiper-container>):(<div></div>)}
 </div>
     </div>
     <Footer_page/>

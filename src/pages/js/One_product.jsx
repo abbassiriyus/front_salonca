@@ -12,6 +12,7 @@ state={
   star:['','','','',''],
   nowdata:'',
   masterid:0,
+  one_master:[],
   time:"",
   master:{}
 }
@@ -73,6 +74,8 @@ if (month.length < 2){month = '0' + month;}
 if (day.length < 2){day = '0' + day;} 
 this.setState({nowdata:`${year}-${month}-${day}`})
 document.querySelector('#date11').value=`${year}-${month}-${day}`
+document.querySelector('#date112').value=`${year}-${month}-${day}`
+
 }
 
 
@@ -152,14 +155,14 @@ document.querySelector('#date11').value=`${year}-${month}-${day}`
   <tr>
     <th><span style={{color: '#0e2742'}}>Фото</span></th>
     <th style={{color: '#0e2742'}}>Специализация</th>
-    <th> <span style={{color: '#0e2742'}}>Дата: <input type="date" id="date11" onChange={(e)=>{this.setState({nowdata:e.target.value})}} style={{width:'100px',border:'none',outline:'none'}} /></span></th>
+    <th> <span style={{color: '#0e2742'}}>Дата: <input type="date" id="date11" onChange={(e)=>{this.setState({nowdata:e.target.value})}} style={{width:'120px',border:'none',outline:'none'}} /></span></th>
     <th><span style={{color: '#0e2742'}}>Цена в час</span></th>
   </tr>
  {this.state.data.master?(this.state.data.master.map((item,key)=>{
  
   return <tr className={s.dr}>
     <td className={s.now}><img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="image" />
-    <a href=""></a>
+    <a onClick={()=>{this.setState({one_master:item});document.querySelector('#modal23').style="display:flex"}} className={s.podrobniy}>Подробнее</a>
     </td>
     <td>{item.work}</td>
     <td className={s.button_td}>  
@@ -170,7 +173,7 @@ document.querySelector('#date11').value=`${year}-${month}-${day}`
      
   
   </td>
-    <td>{item.price} ₽</td>
+    <td style={{fontWeight:900,fontSize:'23px',color:'rgb(20, 43, 81)'}}>{item.price} ₽</td>
   </tr>
  })):(<div></div>)}  
   
@@ -182,7 +185,10 @@ document.querySelector('#date11').value=`${year}-${month}-${day}`
   return <div className={s.master}>
   <div className={s.image}>
     <div className={s.title}>Фото</div>
-    <img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="" />
+    <div style={{display:'block'}}>
+    <img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="" /> <br />
+    <a onClick={()=>{this.setState({one_master:item});document.querySelector('#modal23').style="display:flex"}} className={s.podrobniy}>Подробнее</a>
+    </div>
     <p>Дата: {this.state.nowdata}</p>
   </div>
   <div className={s.spes}>
@@ -207,7 +213,7 @@ document.querySelector('#date11').value=`${year}-${month}-${day}`
 
 
 <div className={s.cass}>
-<button  style={this.state.time.length>0&&this.state.masterid!=0?{backgroundColor:"#0e2742"}:{backgroundColor:"#0e274280"}} onClick={()=>{this.Vibor()}} >Выбрать</button>
+<button  style={this.state.time.length>0&&this.state.masterid!=0?{backgroundColor:"#0e2742"}:{backgroundColor:"#0e274280",marginBottom:'30px'}} onClick={()=>{this.Vibor()}} >Выбрать</button>
        <ul style={{listStyle:"none "}}>
            <li><i class='bx bx-check-double' style={{color:'#259a42'}}  ></i> Бронируйте сейчас — платите потом!</li>
            <li><i class='bx bx-check-double' style={{color:'#259a42'}}  ></i> Бесплатная отмена</li>
@@ -281,7 +287,51 @@ return <option value={item.id}>{item.work}</option>
  <Map_page /> 
 </div>
 </div>
+
+<div className={s.one_master}  id="modal23">
+  <div className={s.close} onClick={()=>{document.querySelector('#modal23').style="display:none"}}>x</div>
+<div className={s.page12}>
+<h1 style={{fontSize:'23px',color:'#0e2742',paddingTop:'10px',paddingLeft:'20px'}}>Место для визажиста</h1>
+{this.state.one_master.mutahasis_image?(<swiper-container style={{height:'170px',maxWidth:'80%'}} id={s.swipper1} class="mySwiper"
+   thumbs-swiper=".mySwiper21" space-between="10" navigation="true">
+  {this.state.one_master.mutahasis_image?(this.state.one_master.mutahasis_image.map((item,key)=>{
+    return <swiper-slide >
+     <img  src={item.image} alt="img"  />
+   </swiper-slide>
+  })):(<div>ddd</div>)} 
+
+ </swiper-container>):(<div></div>)} 
+
+
+ {this.state.one_master.mutahasis_image?(<swiper-container style={{maxHeight:'60px',maxWidth:'80%'}}  class="mySwiper21" id={s.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
+   watch-slides-progress="true">
+   {this.state.one_master.mutahasis_image?(this.state.one_master.mutahasis_image.map((item,key)=>{
+    return <swiper-slide >
+     <img src={item.image}  alt="img"/>
+   </swiper-slide>
+  })):(<div>ddd</div>)} 
+ </swiper-container>):(<div></div>)}
+<h3 style={{color:'#0e2742',fontSize:'15px'}}>Описание</h3>
+<p style={{fontSize:'12px'}}>{this.state.one_master.description}</p>
+<span  style={{width:'90%',margin:'auto',display:'flex',gap:'10px',flexWrap:'wrap'}}>Дата: 
+<input style={{border:'none',width:'120px',outline:'none'}} type="date" id="date112" />
+</span>
+<div style={{width:'90%',margin:'auto',display:'flex',gap:'10px',flexWrap:'wrap'}} className={s.button}>
+{this.state.one_master.mutahasis_time?(this.state.one_master.mutahasis_time.map((item1,key1)=>{
+  return <button onClick={()=>{this.bigclick("b"+key1);this.setState({time:item1.time,masterid:this.state.one_master.id})}} className="er" id={"b"+key1}>{item1.time}</button>
+})):(<></>)}
+</div>
+<div className={s.one_master_buttton}>
+<button style={this.state.time&&this.state.masterid==this.state.one_master.id?{backgroundColor:"#0e2742"}:{backgroundColor:"#0e274280"}} onClick={()=>{this.Vibor()}} className={s.button_one}>Выбрать</button>
+</div>
+</div>
+
+</div>
+
 <Footer_page/>
+
+
+
 </div>;
   }
 }

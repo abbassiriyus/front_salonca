@@ -52,7 +52,7 @@ var senddata={
   "date":document.querySelector("#date_time").value,
   "rayonMetro":this.state.select_data,
 }
-localStorage.setItem("filter", JSON.stringify(senddata))
+sessionStorage.setItem("filter", JSON.stringify(senddata))
 setTimeout(() => {
   window.location="/search"
 }, 1000);

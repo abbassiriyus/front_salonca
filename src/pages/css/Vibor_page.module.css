@@ -90,6 +90,13 @@ flex-wrap: wrap;
  .reg .inp input{
     min-width: 280px;
   }
+ 
+}
+@media(max-width:430px){
+  .reg{
+    display: block;
+    margin: auto;
+  }
 }
  .reg .swiper-wrapper{
  display: block;
@@ -179,9 +186,7 @@ overflow: hidden !important;
 }
 .sipper12{
     width: 50%;
-    background-color: red;
     min-height: 200px;
     margin-top: 10%;
-    position: static !important;
     top: 10%;
 }
