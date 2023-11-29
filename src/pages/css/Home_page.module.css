@@ -8,11 +8,23 @@ background-size: cover;
 background-position:center;
 }
 .header .black_fon{
-    background-color: rgba(255, 255, 255, 0.463);
+    background-color: rgba(255, 255, 255, 0.419);
+    backdrop-filter: blur(4px);
     width: 100%;
     min-height: 400px;
     height: 100%;padding: 10%;
 }
+.header_center h1,.header_center p{
+    color: rgb(28, 61, 114);
+}
+::placeholder {
+    color: rgb(28, 61, 114);
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12-18 */
+    color: rgb(28, 61, 114);
+  }
 .header .header_inputs{
     display: flex;
     justify-content: space-between;
@@ -28,6 +40,7 @@ padding: 16px 16px;
 position: relative;
 margin-top: 4px;
 font-size: 16px;
+cursor: pointer;
 }
 .header .select_data{
     position: absolute;
@@ -36,7 +49,6 @@ font-size: 16px;
     background-color: white;
     box-shadow: inset 0px 0px 1px grey;
     padding: 3px;
-   
     left: 0px;
     width: 100% !important;
     z-index: 12;
@@ -46,7 +58,6 @@ font-size: 16px;
     list-style: none;
     margin: 0px;
     padding: 0px;
-
     font-size: 18px;
 }
 .header .select_data ul li{
@@ -76,7 +87,6 @@ padding-left: 20px;
     left: 0px;
     z-index: 12;
     background-color: white;
-
     width: 100%;
     border-radius: 20px;
    display: none;
@@ -85,6 +95,7 @@ padding-left: 20px;
 }
 .header .header_input input{
 border: none;
+color: rgb(28, 61, 114);
 outline: none;
 }
 @media(max-width:877px){
@@ -135,6 +146,7 @@ border-bottom-right-radius:20px ;
     flex-direction: column;
     width: 95%;
     margin: auto;
+    cursor: pointer;
     /* min-width: 300px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 20px;
@@ -142,15 +154,16 @@ border-bottom-right-radius:20px ;
     overflow: hidden;
     height: 300px;
 }
-.second_page .card_h img{
+.second_page .card_h .img{
     height: 230px;
     width: auto;
-
+    background-size: cover !important;
+    background-position: center !important;
 }
 .second_page .card_h h3{
     font-size: .875rem;
     padding-left: 10px;
-    padding-top: 10px;
+    padding-top: 10px ;
 }
 .second_page .main_button{
     padding: 0.5rem;
@@ -159,8 +172,8 @@ border-bottom-right-radius:20px ;
     background-color: rgb(20, 43, 81) !important;
 }
 .circle{
-    width: 10px;
-height: 10px;
+    width: 13px;
+height: 13px;
 background-color: aqua;
 margin-right: 5px;
 margin-left: 10px;
@@ -222,3 +235,11 @@ color: rgb(28, 61, 114);
 .search_filter{
     display: flex;
 }
+/* #sa{
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+} */
+/* .filter_check input{
+    border: none !important;
+border:  1px solid rgb(28, 61, 114);
+} */

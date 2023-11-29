@@ -35,6 +35,7 @@ state={
       
     }
   }
+  
   close_modal=()=>{
     document.querySelector('#modal_first').style="left:-400px"
   }
@@ -53,7 +54,7 @@ state={
     <div style={{borderRadius:'50%'}} className={s.circle}></div>{this.state.getdata[0].address}</p>
   <p className={s.sena_card} >
     {this.state.getdata[0].master.length>0?(<div>от {this.state.getdata[0].master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
-  <img src={this.state.getdata[0].image} alt="" />
+    <div className={s.img} style={{background:`url(${this.state.getdata[0].image})`,backgroundSize:'cover'}}></div>
 </div> ):(<div>
   
 </div>)

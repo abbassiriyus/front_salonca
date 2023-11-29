@@ -70,7 +70,7 @@ componentDidMount(){
 
 
   render() {
-    return <div className="big_s">
+    return <div className={s.big_s}>
       <Navbar_page/>
  <div className={s.reg}>
         <div className={s.reg1}>
@@ -119,11 +119,11 @@ componentDidMount(){
             <p>Стоимость</p>
             <h3 style={{color: '#223e61'}}>{this.state.master.price} ₽</h3>
         </div>
-        <div class="stoimost2">
+        <div className={s.stoimost2}>
             <button onClick={()=>{this.Zakaz()}} >Забронировать</button>
         </div>
     </div><br/>
-    <p class="lol">Нажимая кнопку Забронировать, вы подтверждаете согласие с требованиями салона. Оплата производится на месте по правилам салона</p>
+    <p class={s.lol}>Нажимая кнопку Забронировать, вы подтверждаете согласие с требованиями салона. Оплата производится на месте по правилам салона</p>
     </div>
 
 <div className={s.sipper12}>
@@ -139,7 +139,7 @@ componentDidMount(){
  </swiper-container>):(<div></div>)} 
 
 
- {this.state.data.images?(<swiper-container style={{maxHeight:'200px'}} class="mySwiper2" id={s2.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
+ {this.state.data.images?(<swiper-container style={{maxHeight:'200px',width:'100%'}} class="mySwiper2" id={s2.mySwiper21} space-between="10" slides-per-view="4" free-mode="true"
    watch-slides-progress="true">
    {this.state.data.images?(this.state.data.images.map((item,key)=>{
     return <swiper-slide>

@@ -81,7 +81,7 @@ document.querySelector('#date112').value=`${year}-${month}-${day}`
 
   render() {
     return <div>  <Navbar_page/>  <div className={s.salonca_head1}>
-           <a href="/search"><i class='bx bx-left-arrow-alt'></i>Вернуться назад</a>
+           <a href="/"><i class='bx bx-left-arrow-alt'></i>Вернуться назад</a>
        </div>  <div className={s.salonca_head}>
    
        <div className={s.salonca_head2}>
@@ -161,7 +161,9 @@ document.querySelector('#date112').value=`${year}-${month}-${day}`
  {this.state.data.master?(this.state.data.master.map((item,key)=>{
  
   return <tr className={s.dr}>
-    <td className={s.now}><img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="image" />
+    <td className={s.now}>
+      <div className="img"  style={{background:`url(${item.mutahasis_image.length>0?item.mutahasis_image[0].image:'https://img.freepik.com/premium-vector/doodle-hair-salon-seamless-pattern-isolated-white-background-hand-drawn-vector-barbershop-elements-seamless-pattern_646079-340.jpg'})`,width:'100px',height:'100px',backgroundSize:'cover',backgroundPosition:'center'}}></div>
+      {/* <img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="image" /> */}
     <a onClick={()=>{this.setState({one_master:item});document.querySelector('#modal23').style="display:flex"}} className={s.podrobniy}>Подробнее</a>
     </td>
     <td>{item.work}</td>
@@ -186,7 +188,7 @@ document.querySelector('#date112').value=`${year}-${month}-${day}`
   <div className={s.image}>
     <div className={s.title}>Фото</div>
     <div style={{display:'block'}}>
-    <img src={item.mutahasis_image.length>0?item.mutahasis_image[0].image:''} alt="" /> <br />
+    <div className="img"  style={{background:`url(${item.mutahasis_image.length>0?item.mutahasis_image[0].image:'https://img.freepik.com/premium-vector/doodle-hair-salon-seamless-pattern-isolated-white-background-hand-drawn-vector-barbershop-elements-seamless-pattern_646079-340.jpg'})`,width:'100px',height:'100px',backgroundSize:'cover',backgroundPosition:'center'}}></div><br />
     <a onClick={()=>{this.setState({one_master:item});document.querySelector('#modal23').style="display:flex"}} className={s.podrobniy}>Подробнее</a>
     </div>
     <p>Дата: {this.state.nowdata}</p>
@@ -197,7 +199,7 @@ document.querySelector('#date112').value=`${year}-${month}-${day}`
   </div>
 <div className={s.button}>
 {item.mutahasis_time.length>0?(item.mutahasis_time.map((item1,key1)=>{
-  return <button onClick={()=>{this.bigclick("b"+key+key1);this.setState({time:item1.time,masterid:item.id})}} className="er" id={"b"+key+key1}>{item1.time}</button>
+  return <button onClick={()=>{this.bigclick("b"+key+key1);this.setState({time:item1.time,masterid:item.id,master:item})}} className="er" id={"b"+key+key1}>{item1.time}</button>
 })):(<></>)}
 </div>
 <div className={s.sena}>
@@ -318,7 +320,7 @@ return <option value={item.id}>{item.work}</option>
 </span>
 <div style={{width:'90%',margin:'auto',display:'flex',gap:'10px',flexWrap:'wrap'}} className={s.button}>
 {this.state.one_master.mutahasis_time?(this.state.one_master.mutahasis_time.map((item1,key1)=>{
-  return <button onClick={()=>{this.bigclick("b"+key1);this.setState({time:item1.time,masterid:this.state.one_master.id})}} className="er" id={"b"+key1}>{item1.time}</button>
+  return <button onClick={()=>{this.bigclick("b"+key1);this.setState({time:item1.time,masterid:this.state.one_master.id,master:this.state.one_master})}} className="er" id={"b"+key1}>{item1.time}</button>
 })):(<></>)}
 </div>
 <div className={s.one_master_buttton}>

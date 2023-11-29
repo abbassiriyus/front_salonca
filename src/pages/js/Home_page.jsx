@@ -117,8 +117,11 @@ componentDidMount(){
         <h1>Забронируйте свое рабочее место</h1>
         <p>Быстрый поиск по бьюти салонам города</p>
         <div className={s.header_inputs}>
-        <div className={s.header_input} >
-          <div className={s.title}  style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}  onClick={()=>{this.open_modal2()}} ><div>{this.state.select_page}</div><MdKeyboardArrowDown/> </div>  
+        <div className={s.header_input} id={s.sa} >
+          <div className={s.title}  style={{display:'flex',
+          justifyContent:'space-between',color: 'rgb(28, 61, 114)',
+          alignItems:'center'}}  
+          onClick={()=>{this.open_modal2()}} ><div>{this.state.select_page}</div><MdKeyboardArrowDown/> </div>  
           <div className={s.pages} onMouseLeave={()=>this.open_modal()} id="modal_header" >
             
            {this.state.category.map((item,key)=>{
@@ -128,7 +131,7 @@ componentDidMount(){
         </div>
         </div>
         <div className={s.header_input}>
-          <input type="text"  id="valuesearch" onKeyUp={(e)=>{this.setState({searchkey:e.target.value});document.querySelector('#page_select').style="display:block";this.result_control(e.target.value);}}  style={{background:'none',width:'100%',height:'100%'}}  placeholder="Район или метро" />
+    <input type="text"  id="valuesearch" className={s.border_first} onKeyUp={(e)=>{this.setState({searchkey:e.target.value});document.querySelector('#page_select').style="display:block";this.result_control(e.target.value);}}  style={{background:'none',width:'100%',height:'100%',cursor:'pointer'}}  placeholder="Район или метро" />
           <div id="page_select" style={{display:"none"}} onMouseLeave={()=>{document.querySelector('#page_select').style="display:none"}} className={s.select_data}>
 {(this.state.resultpage_metro||this.state.resultpage_rayon)?(
   <div> 
@@ -157,9 +160,9 @@ componentDidMount(){
           
         </div>
         <div className={s.header_input}>
-          <input  style={{background:'none',width:'100%',height:'100%'}} type="date" id="date_time" placeholder="Дата" /></div>
+          <input  style={{background:'none',width:'100%',height:'100%',cursor:'pointer'}} type="date" id="date_time" placeholder="Дата" /></div>
         <div className={s.header_input} style={{background:"rgb(59 130 246)",borderRight:'20px'}}>
-          <input style={{background:'none',width:'100%',height:'100%'}} type="button" onClick={()=>{this.startFilter()}} value="Найти" /></div>
+          <input style={{background:'none',width:'100%',height:'100%',color:'white',fontWeight:'700',fontSize:'20px'}} type="button"  onClick={()=>{this.startFilter()}} value="Найти" /></div>
         </div>
        </div>
   </div>
@@ -177,7 +180,7 @@ return <div onClick={()=>{this.getProduct(item)}} className={s.card_h}>
     <div style={{borderRadius:'50%'}} className={s.circle}></div>{item.address}</p>
   <p className={s.sena_card} >
     {item.master.length>0?(<div>от {item.master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
-  <img src={item.image} alt="" />
+    <div className={s.img} style={{background:`url(${item.image})`,backgroundSize:'cover'}} ></div>
 </div>
 }
 })}

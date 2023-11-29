@@ -100,7 +100,9 @@ componentDidMount(){
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/salon">Салонам</a></li>
 <li>
-  {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} /> <span style={{position:'relative',top:'2px'}}>Профиль</span></a>):(  <button onClick={()=>{
+  {localStorage.getItem("token")?(<a style={{textDecoration:'none',color:'rgb(28, 61, 114) ',display:'flex',alignItems:'center'}} href='/users'><FaRegUser style={{marginRight:'4px'}} />
+   <span style={{position:'relative',top:'2px'}}>Профиль</span>
+   </a>):(  <button onClick={()=>{
    document.querySelector('#modal_navbar').style="top:-400px";
    document.querySelector('#modal122').style="display:flex";
   }}>Войти</button>)}
@@ -138,7 +140,7 @@ componentDidMount(){
 
 <div className={s.back_user} id='modal122'>
 {this.state.key===0?(<div className={s.modal_user}>
-  <div className={s.close} onClick={()=>{
+  <div className={s.close} style={{userSelect:"none"}} onClick={()=>{
     document.querySelector('#modal122').style="display:none"
   }} >x</div>
 <h2>Регистрация</h2>
@@ -149,20 +151,24 @@ componentDidMount(){
 <label htmlFor="">Имя пользователя</label><br />
 <input type="text" placeholder='Username' id='username' /><br />
 <button onClick={()=>{this.registratsiya()}} >Получить код в email</button>
-<center><p onClick={()=>{this.setState({key:1})}} >Вход для салонов</p></center>
+<center><p onClick={()=>{this.setState({key:1})}} style={{cursor:'pointer',textDecoration:'underline'}} >Вход для салонов</p></center>
 </div>):(<></>)}
 {this.state.key===1?(<div className={s.modal_user}>
-  <div className={s.close}>x</div>
+  <div className={s.close} style={{userSelect:"none"}} onClick={()=>{
+    document.querySelector('#modal122').style="display:none"
+  }}>x</div>
 <h2>Вход</h2>
 <label htmlFor="">Электронная почта</label><br />
 <input type="text" placeholder='email' id='email1' /><br />
 <label htmlFor="">Пароль</label><br />
 <input type="text" placeholder='password' id="parol1" /><br />
 <button onClick={()=>{this.login()}} >Вход</button>
-<center><p onClick={()=>{this.setState({key:0})}} >Вход для салонов</p></center>
+<center><p onClick={()=>{this.setState({key:0})}} style={{cursor:'pointer',textDecoration:'underline'}} >Вход для салонов</p></center>
 </div>):(<></>)}
 {this.state.key===2?(<div className={s.modal_user}>
-  <div className={s.close}>x</div>
+  <div className={s.close} style={{userSelect:"none"}} onClick={()=>{
+    document.querySelector('#modal122').style="display:none"
+  }}>x</div>
 <h2>Вход</h2>
 <label htmlFor="">Электронная почта</label><br />
 <input style={{border:'1px solid gray'}} disabled type="text" placeholder='email' value={this.state.email} /><br />

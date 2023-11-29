@@ -102,8 +102,8 @@ outline: none;
     border: 1px solid rgb(28, 61, 114);
      border-radius: 10px;
      display: flex;
-     gap: 3px;
-     align-items:start ;
+     /* gap: 3px; */
+     align-items:center ;
      position: relative;
      flex-wrap: wrap;
      padding-left: 5px;
@@ -112,14 +112,20 @@ margin-bottom: 20px;
 padding: 3px;
 padding-left: 20px;
 }
+/* .metro12{
+    margin-right: 3px;
+} */
 .input_div p{
     color: rgba(28, 61, 114, 0.594);
     width: 100%;
+    padding-bottom: 0pc !important;
+    margin-bottom: 0pc !important;
 }
 .metro1{margin-top: 2px;
     border: 1px solid rgb(28, 61, 114);
     padding: 0px 10px;
     border-radius: 3px;
+    margin-right: 3px;
     width: auto;
     display: flex;
     cursor: pointer;
@@ -143,10 +149,12 @@ padding-left: 20px;
     list-style: none;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-radius: 5px;
-    border-bottom: 1px solid rgba(0, 128, 0, 0.34) !important;
+    /* border-bottom: 1px solid rgba(0, 128, 0, 0.34) !important; */
 }
 .input_div .openpage_metro li{
-    border-bottom: 1px solid rgba(0, 128, 0, 0.34); 
+    /* border-bottom: 1px solid rgba(0, 128, 0, 0.34);  */
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 20px;
     cursor: pointer;
 }
@@ -155,11 +163,15 @@ padding-left: 20px;
 }
 .metro1 .close{
     margin-left: 10px;
+    cursor: pointer;
+    user-select: none;
 
 }
 .metro1:hover .close{
     display: block;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+    user-select: none;
 }
 .date_time{
     width: 100%;
@@ -183,6 +195,7 @@ padding-right: 10px;
 .filter_check{
     display: flex;
     font-size: 15px;
+    align-items: start;
 }
 .filter_check input{
     margin-right: 5px;
@@ -221,6 +234,7 @@ border-bottom-right-radius:20px ;
     flex-direction: column;
     width: 95%;
     margin: auto;
+    cursor: pointer;
     max-width: 400px;
     /* min-width: 300px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -228,11 +242,13 @@ border-bottom-right-radius:20px ;
     margin-top: 30px;
     overflow: hidden;
     height: 350px;
+    /* background-color: red; */
 }
-.search_body .card_h img{
+.search_body .card_h .img{
     height: 230px;
-    width: auto;
-
+    width: auto !important;
+    background-size: cover !important;
+    background-position: center !important;
 }
 .search_body .card_h h3{
     font-size: .875rem;
@@ -340,3 +356,30 @@ color: rgb(28, 61, 114);
 
 
 
+.pagination {
+    display: inline-block;
+
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  
+  .pagination a.active {
+    background-color: rgb(28, 61, 114);
+    color: white;
+    border: 1px solid rgb(28, 61, 114);
+  }
+  .pagnation_pos{
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    margin: auto;margin-top: 20px;
+  }

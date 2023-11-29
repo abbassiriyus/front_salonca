@@ -3,6 +3,8 @@ import Navbar_page from "./Navbar_page"
 import Footer_page from "./Footer_page"
 import s from "../css/Search_page.module.css"
 import axios from "axios";
+import Pagination from "react-pagination-library";
+import "react-pagination-library/build/css/index.css"; 
 import url from "../config/host";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineMinus } from "react-icons/ai"
@@ -19,8 +21,12 @@ state={
     rayon:[],
     rayon1:[],
     metro1:[],
+    currentPage: 1,
+    countpage:[],
+    page:9
     }
-    // start filter oll
+
+   
 filter_master=(data)=>{
     var masiv=data
     var send_data=[]
@@ -42,6 +48,7 @@ send_data.push(masiv[i])
 filter_price=(data)=>{
 var min_price=document.querySelector('#min_price').value
 var max_price=document.querySelector('#max_price').value
+var result=[]
 if(max_price.length!==0 && min_price.length!==0){
 for (let i = 0; i < data.length; i++) {
 if(data[i].master.length>0 && data[i].master[0].price>=min_price*1 && data[i].master[0].price<=max_price*1){
@@ -68,7 +75,7 @@ if(max_price.length===0 && min_price.length===0){
 result=data
 }
 
-var result=[]
+
 
 return result
 }
@@ -130,7 +137,6 @@ push=true
 if(push){
 send_data.push(data[i])
 }
-
 }
 }else{
 send_data=data
@@ -179,9 +185,19 @@ getCategory=()=>{
   }
 getFillial=()=>{
       axios.get(`${url}/api/filyal`).then(res=>{
+        var a=[]
+        var b=0
         for (let i = 0; i < res.data.length; i++) {
         res.data[i].date1="сегодня"
-        }
+        if(i%this.state.page==0){
+          b++
+        } 
+      }
+      for (let i = 0; i < b; i++) {
+        a.push(i+1)
+      }
+     
+      this.setState({countpage:a})
     this.setState({filyal:res.data})
       }).catch(err=>{
         console.log(err.message);
@@ -224,6 +240,20 @@ allFilter=()=>{
     data=this.filter_date(data)
     data=this.filter_metro(data)
     data=this.filter_rayon(data)
+    var a=[]
+    var b=0
+    for (let i = 0; i < data.length; i++) {
+      data[i].date1="сегодня"
+      if(i%this.state.page==0){
+        b++
+      } 
+    }
+    for (let i = 0; i < b; i++) {
+      a.push(i+1)
+    }
+   
+    this.setState({countpage:a})
+
     this.setState({filyal:this.filter_price(data)})
       }).catch(err=>{
         console.log(err.message);
@@ -290,8 +320,8 @@ getProduct=(item)=>{
       this.getFillial()
       this.getMetro()
       this.getRayon()
-      this.getXususiyat()
-      var data_key=JSON.parse(sessionStorage.getItem("filter"))
+  this.getXususiyat()
+var data_key=JSON.parse(sessionStorage.getItem("filter"))
 if(data_key){
   console.log(data_key,"ishladi");
   this.setState({select_page:data_key.name,select_id_category:data_key.id})
@@ -376,36 +406,37 @@ this.setState({metro1:[data_key.rayonMetro]})
 })} <br />
 <p onClick={()=>{this.open_molal_metro1()}} >Выберите район</p>
 </div>
-<label htmlFor="">Особенности</label><br />
+<label htmlFor="" style={{marginBottom:'5px'}}>Особенности</label><br />
 {this.state.xususiyat.map((item,key)=>{
 return <div className={s.filter_check}>
-  <input type="checkbox" className="check_x" /><span className="check_xt">{item.title}</span>
+<input type="checkbox" style={{border:'none !important',border:'1px solid rgb(28, 61, 114'}} className="check_x" /><span style={{position:'relative',top:'-5px'}} className="check_xt">{item.title}</span>
 </div>
 })}
 
 
-<button onClick={()=>{this.allFilter()}} >Найти</button>
+<button onClick={()=>{this.allFilter();sessionStorage.removeItem('filter')}} style={{marginTop:'30px'}} >Найти</button>
 </div>
 <div className={s.search_cards}>
 {this.state.filyal.map((item,key)=>{
-if(key<8){
+if((this.state.currentPage-1)*this.state.page<=key && (this.state.currentPage)*this.state.page>key){
 return <div onClick={()=>{this.getProduct(item)}} className={s.card_h}>
   <h3>{item.name}</h3>
-  <p style={{display:'flex',alignItems:'center'}}>
-    <div style={{borderRadius:'50%'}} className={s.circle}></div>{item.address}</p>
+  <p style={{display:'flex',alignItems:'start'}}>
+    <div style={{borderRadius:'50%'}} className={s.circle}></div><span style={{position:"relative",top:'-5px'}}>{item.address}</span></p>
   <p className={s.sena_card} >
     {item.master.length>0?(<div>от {item.master[0].price} ₽/час · <span>от 1 часа</span></div>):(<span>не в рабочем состоянии</span>)}  </p>
   <div className={s.dostup_data}>Доступно {item.date1}:</div>
   <div className={s.worktime}>{" "}
 {item.master.length>0?(item.master[0].mutahasis_time.map((item1,key1)=>{
-  return <button>{item1.time}</button>
+  if(key1<4){ return <button>{item1.time}</button>}
+ 
 })):(<></>)
 
 }
    
 
   </div>
-  <img src={item.image} alt="" />
+  <div className={s.img} style={{background:`url(${item.image})`,backgroundSize:'cover'}} ></div>
 </div>
 }
 })}
@@ -413,6 +444,28 @@ return <div onClick={()=>{this.getProduct(item)}} className={s.card_h}>
 </div>
 
 </div>
+{this.state.countpage.length==1?(<div></div>):(<div className={s.pagnation_pos}>
+<div class={s.pagination}>
+{this.state.currentPage==1?(<></>):(<a onClick={()=>{this.setState({currentPage:this.state.currentPage-1})}} >&laquo;</a>)}
+
+ 
+  {this.state.countpage.map(item=>{
+    if(this.state.currentPage===item){
+   return  <a class={s.active}>{item}</a>
+    }else if(item===1){
+   return <a onClick={()=>{this.setState({currentPage:item})}} >1</a>
+    }else if(this.state.countpage.length===item){ 
+      return <a onClick={()=>{this.setState({currentPage:item})}}> {this.state.countpage.length}</a>
+    }else if(this.state.currentPage+1==item || this.state.currentPage-1==item ){
+return <a onClick={()=>{this.setState({currentPage:item})}}>{item}</a>
+    }else if(this.state.currentPage+2==item ||this.state.currentPage-2==item ){
+      return  <a>...</a>
+    }
+ 
+  })}
+ {this.state.currentPage==this.state.countpage.length?(<></>):(  <a  onClick={()=>{this.setState({currentPage:this.state.currentPage+1})}} >&raquo;</a>)}
+
+</div></div>)}
 
 
 <Footer_page/>

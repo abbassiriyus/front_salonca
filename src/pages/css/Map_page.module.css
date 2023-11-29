@@ -26,18 +26,21 @@ border-bottom-right-radius:20px ;
     flex-direction: row-reverse;
     flex-direction: column;
     width: 95%;
+    cursor: pointer;
     margin: auto;
     /* min-width: 300px; */
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 20px;
     margin-top: 30px;
     overflow: hidden;
-    height: 300px;
+    height: 350px;
+    position: relative;
 }
-.cards .card_h img{
-    height: 230px;
+.cards .card_h .img{
+    height:250px;
     width: auto;
-
+background-size: cover !important;
+background-position: center !important;
 }
 .cards .card_h h3{
     font-size: .875rem;
@@ -148,4 +151,6 @@ color: rgb(28, 61, 114);
     cursor: pointer;
     align-items: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    user-select: none;
  }
