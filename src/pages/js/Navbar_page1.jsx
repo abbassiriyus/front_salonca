@@ -6,6 +6,7 @@ import s from "../css/Navbar_page.module.css"
 import axios from 'axios'
 import url from '../config/host'
 
+import logo from "../img/photo_2023-12-01_19-06-45.jpg"
 
 
 export default class Navbar_page extends Component {
@@ -90,7 +91,7 @@ openModalContact=()=>{
     return (
       <div>
 <div className={s.navbar_first}>
-<a style={{textDecoration:'none',color:'black'}} href="/"><div className={s.logo}>salonca</div></a>
+<a style={{textDecoration:'none',color:'black'}} href="/"><div  className={s.logo}><img style={{height:'60px'}}  src={logo} alt="" /></div></a>
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/">Мастерам</a></li>

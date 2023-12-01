@@ -5,7 +5,7 @@ import {MdClose} from "react-icons/md"
 import s from "../css/Navbar_page.module.css"
 import axios from 'axios'
 import url  from "../config/host"
-
+import logo from "../img/photo_2023-12-01_19-06-45.jpg"
 
 export default class Navbar_page extends Component {
 state={
@@ -95,7 +95,7 @@ componentDidMount(){
     return (
       <div>
 <div className={s.navbar_first}>
-<a style={{textDecoration:'none',color:'black'}} href="/"><div className={s.logo}>salonca</div></a>
+<a style={{textDecoration:'none',color:'black'}} href="/"><div  className={s.logo}><img src={logo} alt="" style={{height:'60px'}} /></div></a>
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/salon">Салонам</a></li>
