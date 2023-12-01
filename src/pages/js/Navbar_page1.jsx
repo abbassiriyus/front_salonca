@@ -3,6 +3,8 @@ import { FaRegUser } from "react-icons/fa"
 import { TbMenu2 } from "react-icons/tb"
 import {MdClose} from "react-icons/md"
 import s from "../css/Navbar_page.module.css"
+import axios from 'axios'
+import url from '../config/host'
 
 
 
@@ -12,7 +14,53 @@ export default class Navbar_page extends Component {
     email:"test@gmail.com",
   key:0
   }
-
+  registratsiya=()=>{
+    var data=new FormData()
+    this.setState({email:document.querySelector("#email").value})
+    data.append("username",document.querySelector("#username").value)
+    data.append("email",document.querySelector("#email").value)
+    data.append("password",document.querySelector("#parol").value)
+  axios.post(`${url}/api/register`,data).then(res=>{
+    this.setState({key:2})
+  }).catch(err=>{
+   console.error(err.message)
+  })
+  }
+  
+  send_code=()=>{
+    var data=new FormData()
+    data.append("code",document.querySelector("#code").value)
+  
+  axios.post(`${url}/api/verify`,data).then(res2=>{
+    axios.get(`${url}/api/users`).then(res=>{
+     var a=res.data.filter(item=>item.email==this.state.email)
+      localStorage.setItem("one_user",JSON.stringify(a))
+      localStorage.setItem("token",res2.data.access)
+        window.location='/users'  
+      })
+  }).catch(err=>{
+   console.error(err.message)
+  })
+  }
+  
+  login=()=>{
+    var data=new FormData()
+    data.append("email",document.querySelector("#email1").value)
+    data.append("password",document.querySelector("#parol1").value)
+  
+  axios.post(`${url}/api/login`,data).then(res1=>{
+  axios.get(`${url}/api/users`).then(res=>{
+  var a=res.data.filter(item=>item.email==document.querySelector("#email1").value)
+  localStorage.setItem("one_user",JSON.stringify(a))
+  localStorage.setItem("token",res1.data.token)
+    window.location='/users'  
+  })
+    
+  }).catch(err=>{
+   console.error(err.message)
+  })
+  }
+  
 open_modal=()=>{
   if(this.state.modal_var==0){
    document.querySelector('#modal_navbar').style="top:70px" 

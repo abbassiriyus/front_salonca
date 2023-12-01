@@ -31,11 +31,11 @@ send_code=()=>{
   var data=new FormData()
   data.append("code",document.querySelector("#code").value)
 
-axios.post(`${url}/api/verify`,data).then(res=>{
+axios.post(`${url}/api/verify`,data).then(res2=>{
   axios.get(`${url}/api/users`).then(res=>{
-   var a=res.data.filter(item=>item.email==document.querySelector("#email").value)
+   var a=res.data.filter(item=>item.email==this.state.email)
     localStorage.setItem("one_user",JSON.stringify(a))
-    localStorage.setItem("token",res.data.access)
+    localStorage.setItem("token",res2.data.access)
       window.location='/users'  
     })
 }).catch(err=>{
