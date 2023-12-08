@@ -1,0 +1,385 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.new-users-main{
+width: 80%;
+display: grid;
+grid-template-columns: auto auto;
+justify-content: center;
+margin: auto;
+margin-top: 50px;
+gap: 30px;
+padding-right: 25px;
+}
+
+.form-otziv{
+ width: 390px;
+ padding:17px;
+ background-color: #fff;
+ box-shadow: 0px 0px 30px 10px rgba(241, 241, 241, 0.841);
+border-radius: 15px;
+margin-bottom: 10px;
+}
+.form-main{
+    display: block;
+}
+.otziv-text p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 700;
+    color: #3d5a80;
+}
+.otziv-text-min p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    line-height: 27px;
+    font-weight: 400;
+    color: #3d5a80;
+}
+.infarmation-main{
+    width: 390px;
+    padding: 17px;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px 10px rgba(241, 241, 241, 0.841);
+   border-radius: 15px;
+   margin-bottom: 10px;
+   }
+.two-inf button{
+    padding: 12px 20px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    color: #3d5a80;
+    font-weight: 600;
+    background-color: rgb(224 251 252);
+    border-radius: 10px;
+}
+.inf-block-1{
+    display: flex;
+    justify-content: space-between;
+}
+.won-inf p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 20px;
+    font-weight: 700;
+    color: #3d5a80;
+}
+.won-inf span{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 12px;
+    color: #98c1d9;
+    position: relative;
+    top: -20px;
+}
+.swiper-kotta{
+    width: 60%;
+    height: 200px;
+    overflow: hidden;
+    background-color: red;
+}
+.swiper-mini{
+width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+}
+.d_f{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.swiper-ong{
+    height: 200px;
+    overflow: auto;
+}
+.swiper-ong::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+ .bnt-inp button{
+    width: 100%;
+    min-height: 36px;
+    padding: 12px 20px;
+    border-radius: var(--rounded-sm);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 20px;
+    font-weight: 700;
+    color: #304f78;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    border:  1px solid #304f78;
+    transition: 0.5s;
+    position: relative;
+    top: -53px;
+ }
+ .bnt-inp button:hover{
+    background: #ecebebbd;
+ }
+ .bnt-inp input{
+    opacity: 0;
+width: 100%;
+min-height: 36px;
+padding: 12px 20px;
+position: relative;
+z-index: 100;
+ }
+ .opisaniya input{
+    width: 100%;
+    padding: 11px 16px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    text-overflow: ellipsis;
+    color: var(--color-primary);
+    font-size: var(--font-md);
+    transform-origin: initial;
+    transform: none;
+    line-height: 16px;
+    font-weight: 400;
+    border:  1px solid rgb(59 130 246/0.5);
+    border-radius: 10px;
+ }
+ .opisaniya p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d5a80;
+    position: relative;
+    top: 10px;
+ }
+ .opisaniya{
+    position: relative;
+    top: -40px;
+ }
+ .opisaniya-salona{
+    position: relative;
+    top: -40px;
+ }
+ .opisaniya-salona input{
+    width: 100%;
+    padding: 11px 16px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    text-overflow: ellipsis;
+    color: var(--color-primary);
+    font-size: var(--font-md);
+    transform-origin: initial;
+    transform: none;
+    line-height: 16px;
+    font-weight: 400;
+    border:  1px solid rgb(59 130 246/0.5);
+    border-radius: 10px;
+ }
+ .opisaniya-salona p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d5a80;
+    position: relative;
+    top: 10px;
+ }
+ .text-opsinaya p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d5a80;
+ }
+ .text-ichi-p p{
+    color: #98c1d9 !important;
+    margin-bottom: 5px;
+ }
+ .text-opsinaya{
+    position: relative;
+    top: -20px;
+ }
+ #pasga{
+    position: relative;
+    top: 7px;
+ }
+ .input-check-la{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    top: -20px;
+ }
+ .check-1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+ }
+ .check-1 span{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d5a80;
+ }
+ .check-1 input{
+    width: 15px;
+    height: 15px;
+    accent-color:#98c1d9 ;
+    outline: none !important;
+    border: none;
+ }
+
+ .opisaniya-salona-3{
+    position: relative;
+    top: -15px;
+ }
+ .opisaniya-salona-3 input{
+    width: 100%;
+    padding: 11px 16px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    text-overflow: ellipsis;
+    color: var(--color-primary);
+    font-size: var(--font-md);
+    transform-origin: initial;
+    transform: none;
+    line-height: 16px;
+    font-weight: 400;
+    border:  1px solid rgb(59 130 246/0.5);
+    border-radius: 10px;
+ }
+ .opisaniya-salona-3 p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 600;
+    color: #3d5a80;
+    position: relative;
+    top: 10px;
+ }
+ .kop-check-block{
+
+    display: flex;
+    
+    gap: 10px;
+    margin-bottom: 7px;
+ }
+ .kop-check-block span{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 11px;
+    font-weight: 600;
+    color: #3d5a80;
+ }
+ .kop-check-block input{
+    width: 15px;
+    height: 15px;
+    accent-color:#98c1d9 ;
+    outline: none !important;
+    border: none;
+  
+ }
+.kop-chekboxla{
+    display: grid;
+    grid-template-columns: auto auto;
+    gap:5px;
+    margin-bottom: 5px;
+}
+.btn-submit-ha button{
+    width: 100%;
+min-height: 48px;
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: var(--font-5xl);
+font-weight: 600;
+color: #fff;
+font-size: 1.125rem;
+background: #3d5a80;
+border: none;
+outline: none;
+border-radius: 10px;
+margin-bottom: 10px;
+}
+.btn-submit-ha button:hover{
+    background: #304d73;
+}
+.btn-submit-ha{
+    text-align: center;
+}
+.btn-submit-ha{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 11px;
+    font-weight: 600;
+    color: #98c1d9;
+}
+.form-otziv-2{
+    width: 390px;
+    padding:17px;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px 10px rgba(241, 241, 241, 0.841);
+   border-radius: 15px;
+   margin-bottom: 50px;
+   }
+   .otziv-text-min button{
+    width: 100%;
+min-height: 48px;
+font-family: "Open Sans", Helvetica, Arial, sans-serif;
+font-size: var(--font-5xl);
+font-weight: 600;
+color: #fff;
+font-size: 1.125rem;
+background: #3d5a80;
+border: none;
+outline: none;
+border-radius: 10px;
+margin-bottom: 10px;
+}
+.calendar-pasi-wone{
+    width: 100%;
+    padding: 17px;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px 10px rgba(241, 241, 241, 0.841);
+   border-radius: 10px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+}
+.calendar-pasi-wone table{
+    width: 100%;
+}
+.table-img{
+    width: 60px;
+    height: 40px;
+    background-size: 100% 100%;
+    margin-bottom: 5px;
+}
+.soz-wone{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 15px;
+    font-weight: 600;
+    color: #98c1d9;
+    margin-bottom: 5px;
+}
+.calendar-pasi-wone p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 20px;
+    font-weight: 600;
+    color: #3d5a80;
+}
+.calendar-pasi-wone table a{
+    font-size: 11px;
+}
+.qizil-yomayo{
+    color: #ee6c4d;
+}
+.table-sozla{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 11px;
+    font-weight: 600;
+    color: #3d5a80;
+}

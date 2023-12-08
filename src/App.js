@@ -13,6 +13,7 @@ import Tarif_page from './pages/js/Tarif_page'
 import One_product from './pages/js/One_product'
 import User_Page from './pages/js/User_Page'
 import Vibor_page from './pages/js/Vibor_page'
+import NewUser from './pages/js/NewUser'
 export default class App extends Component {
   render() {
     return (
@@ -28,6 +29,7 @@ export default class App extends Component {
       <Route path="/tarif" element={<Tarif_page/>} />
       <Route path="/one" element={<One_product/>} />
       <Route path="/vibor" element={<Vibor_page/>} />
+      <Route path="/NewUser" element={<NewUser/>} />
 
       {localStorage.getItem("token")?(<Route path="/users" element={<User_Page/>} />):(<></>)}
 
