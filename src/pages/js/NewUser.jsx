@@ -23,15 +23,19 @@ export default class NewUser extends Component {
     <td> <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Foqql8UlfhxUmDpxesS8ZENBf42WMmttAS7-WlYiJtPU%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzL2ZmNmY5MTIwLTg0NjEtNDI4MC04ZDAyLThkMDk5ZmFiYTNmMi9lNDY4ODI4Ni1kYzMxLTRjNDUtOGMwOC01ZDYxMjAwZjRhMDMucG5n.jpg&w=1920&q=75" className='table-img' alt="" /> </td>
     <td className='table-sozla'>Визажист, Массажист</td>
     <td className='table-sozla'>2 500 ₽</td>
-    <td><a className='qizil-yomayo' href="#">Изменить расписание</a></td>
-    <td><a href="#">Редактировать</a></td>
+    <td><a className='qizil-yomayo' href="#" id='media-yopil'>Изменить расписание</a></td>
+    <td ><a href="#"  id='media-yopil'>Редактировать</a></td>
   </tr>
   <tr>
   <td> <img src="https://salonca.ru/_next/image?url=https%3A%2F%2Fsalonca.ru%2Fimages%2Foqql8UlfhxUmDpxesS8ZENBf42WMmttAS7-WlYiJtPU%2Frs%3Aauto%3A886%3A420%3A1%2Fmh%3A420%2Fdpr%3A2%2Fg%3Ace%2FczM6Ly9zYWxvbmNhLWRldi1idWNrZXQvaW1hZ2VzL2ZmNmY5MTIwLTg0NjEtNDI4MC04ZDAyLThkMDk5ZmFiYTNmMi9lNDY4ODI4Ni1kYzMxLTRjNDUtOGMwOC01ZDYxMjAwZjRhMDMucG5n.jpg&w=1920&q=75" className='table-img' alt="" /> </td>
     <td className='table-sozla'>Визажист, Мастер Ногтевого Сервиса, <br /> Специалист По Наращиванию Ресниц</td>
     <td className='table-sozla'>0 ₽</td>
-    <td><a className='qizil-yomayo' href="#">Изменить расписание</a></td>
-    <td><a href="#">Редактировать</a></td>
+    <td><a className='qizil-yomayo' href="#"  id='media-yopil'>Изменить расписание</a></td>
+    <td><a href="#"  id='media-yopil'>Редактировать</a></td>
+  </tr>
+  <tr>
+    <td><a className='qizil-yomayo' href="#" >Изменить расписание</a></td>
+    <td><a  href="#" >Редактировать</a></td>
   </tr>
 </table>
                 </div>
@@ -85,12 +89,19 @@ export default class NewUser extends Component {
                     </div>
                     <div className="swiper-block-info">
                         <div className="swiper-grid d_f">
-                            <div className="swiper-kotta"></div>
+                            <div className="swiper-kotta">
+                                <img src="https://www.mad4wheels.com/img/free-car-images/mobile/18643/bmw-m5-f90-cs-2022-619130.jpg" alt="" />
+                            </div>
                             <div className="swiper-ong">
-                                <div className="swiper-mini"></div>
-                                <div className="swiper-mini"></div>
-                                <div className="swiper-mini"></div>
-                                <div className="swiper-mini"></div>
+                                <div className="swiper-mini">
+                                    <img src="https://www.mad4wheels.com/img/free-car-images/mobile/18643/bmw-m5-f90-cs-2022-619133.jpg" alt="" />
+                                </div>
+                                <div className="swiper-mini">
+                                    <img src="https://www.mad4wheels.com/img/free-car-images/mobile/18643/bmw-m5-f90-cs-2022-619170.jpg" alt="" />
+                                </div>
+                                <div className="swiper-mini">
+                                    <img src="https://www.avtorinok.ru/cache/photo/pics/bmw/m5-cs/208367-gthumb-gwdata480-ghdata360-gfitdatacrop.jpg" alt="" />
+                                </div>
                             </div>
                         </div>
                         <div className="bnt-inp">
