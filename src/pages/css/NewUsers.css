@@ -512,6 +512,9 @@ margin-bottom: 10px;
     #media-yopil{
         display: none;
     }
+    #media-flex{
+        display:flex !important;
+        }
 }
 @media (max-width:560px) {
     .soz-wone {
@@ -550,6 +553,14 @@ margin-bottom: 10px;
         gap: 30px;
         padding-right: 0;
     }
+    .form-modal{
+        width: 90% !important;
+    background-color: #fff;
+    box-shadow: 0px 0px 30px 10px rgba(104, 103, 103, 0.841);
+   border-radius: 5px;
+       padding: 20px 24px 16px;
+       position: relative;
+   }
 }
 @media (max-width:409px) {
     .swiper-kotta {
@@ -557,4 +568,88 @@ margin-bottom: 10px;
         height: 200px;
         overflow: hidden;
     }
+}
+#media-flex{
+display: none;
+}
+.modal-oyna-newusers{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: rgba(74, 74, 74, 0.621);
+    position: fixed;
+    z-index: 100;
+   display: none;
+}
+.form-modal{
+     width: 390px;
+ background-color: #fff;
+ box-shadow: 0px 0px 30px 10px rgba(104, 103, 103, 0.841);
+border-radius: 5px;
+    padding: 20px 24px 16px;
+    position: relative;
+}
+.modal-oyna-ichi-d_g{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-modal h6{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: 700;
+    color: #3d5a80;
+}
+.form-modal p{
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 13px;
+    font-weight: 400;
+    color: #3d5a80;
+}
+.btn-md button{
+    width: 100%;
+    min-height: 36px;
+    padding: 12px 15px;
+    border-radius: var(--rounded-sm);
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: var(--font-5xl);
+    font-size: 16px;
+    font-weight: 700;
+    color: #304f78;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    border:  1px solid #304f78;
+    transition: 0.5s;
+    margin-bottom: 10px;
+}
+.btn-md button:hover{
+    background: #304f78;
+    color: white;
+}
+.x-x{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: gainsboro;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.x-x  span{
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    top: -3px;
 }

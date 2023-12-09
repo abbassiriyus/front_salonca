@@ -34,8 +34,8 @@ export default class NewUser extends Component {
     <td><a href="#"  id='media-yopil'>Редактировать</a></td>
   </tr>
   <tr>
-    <td><a className='qizil-yomayo' href="#" >Изменить расписание</a></td>
-    <td><a  href="#" >Редактировать</a></td>
+    <td><a className='qizil-yomayo' href="#"  id='media-flex'  >Изменить расписание</a></td>
+    <td><a  href="#" id='media-flex' >Редактировать</a></td>
   </tr>
 </table>
                 </div>
@@ -181,7 +181,22 @@ export default class NewUser extends Component {
                     </div>
                     <div className="otziv-text-min">
                         <p>Вы можете сделать салон невидимым для мастеров и скрыть его из выдачи</p>
-                        <button>Скрыть</button>
+                        <button onClick={()=>document.querySelector(".modal-oyna-newusers").style=`display: flex;`}>Скрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className="modal-oyna-newusers">
+            <div className="modal-oyna-ichi-d_g">
+                <div className="form-modal">
+                    <h6>Вы уверены, что хотите <br /> скрыть салон?</h6>
+                    <p>При нажатии на кнопку “Скрыть” забронировать рабочее место в салоне будет невозможно</p>
+                    <div className="btn-md">
+                        <button>Скрыть</button> <br />
+                        <button  onClick={()=>document.querySelector(".modal-oyna-newusers").style=`display: none;`}>Отмена</button>
+                    </div>
+                    <div className="x-x">
+                        <span onClick={()=>document.querySelector(".modal-oyna-newusers").style=`display: none;`}>x</span>
                     </div>
                 </div>
             </div>
