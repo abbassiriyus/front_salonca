@@ -95,7 +95,11 @@ componentDidMount(){
     return (
       <div>
 <div className={s.navbar_first}>
-<a style={{textDecoration:'none',color:'black'}} href="/"><div  className={s.logo}><img src={logo} alt="" style={{height:'60px'}} /></div></a>
+<a style={{textDecoration:'none',color:'black'}} href="/">
+<div style={{ color: " rgb(28, 61, 114)", boxShadow: ' rgb(28, 61, 114) 0px 2px 1px,  rgb(28, 61, 114) 0px 4px 2px,  rgb(28, 61, 114) 0px 4px 0px,  rgb(28, 61, 114) 0px 6px 0px,  rgb(28, 61, 114, 0.385) 0px 2px 9px', fontSize: '19px', padding: '10px 8px', borderRadius: '10px' }} >
+              Space2space
+            </div>
+  </a>
 <ul className={s.page}>
 <li onClick={()=>this.openModalContact()} >Связаться с нами</li>
 <li><a href="/salon">Салонам</a></li>
