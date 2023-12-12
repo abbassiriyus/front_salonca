@@ -2,5 +2,8 @@
     "editor.defaultFormatter": "zhang-renyang.vscode-react",
     "extensions.supportVirtualWorkspaces": {
         "javascript": "javascriptreact"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     }
 }
